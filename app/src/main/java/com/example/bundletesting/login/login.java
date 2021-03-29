@@ -16,7 +16,7 @@ public class login extends Activity {
     Button btn1;
     EditText edit1, edit2;
 
-    int counter = 3;
+    int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){

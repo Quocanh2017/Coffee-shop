@@ -6,4 +6,11 @@
     <string name="action_table">Table</string>
     <string name="action_coffee">Coffee</string>
     <string name="action_profile">Profile</string>
+    <string name="action_notification">Notification</string>
+    <string name="action_setting">Setting</string>
+    <string name="action_logout">Logout</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="nav_header_title">This is description about me</string>
+    <string name="nav_header_subtitle">quoanh.pqa@mail.com</string>
 </resources>

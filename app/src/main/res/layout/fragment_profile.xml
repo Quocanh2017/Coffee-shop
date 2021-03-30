@@ -6,11 +6,23 @@
     android:background="@android:color/holo_orange_dark">
 
     <TextView
+        android:id="@+id/stTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="40dp"
         android:text="Profile Fragment"
         android:textColor="@color/white"
         android:layout_centerInParent="true"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_above="@+id/stTextView"
+        android:layout_centerInParent="true"
+        android:src="@drawable/baseline_account_circle_white_24"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#FF000000"/>
 
 </RelativeLayout>

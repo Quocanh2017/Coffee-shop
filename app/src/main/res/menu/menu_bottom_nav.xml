@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/action_home"
+    <item android:id="@+id/homeFragment"
         android:title="@string/action_home"
         android:icon="@drawable/baseline_home_white_24"/>
 
-    <item android:id="@+id/action_table"
+    <item android:id="@+id/tableFragment"
         android:title="@string/action_table"
         android:icon="@drawable/round_deck_white_24"/>
 
-    <item android:id="@+id/action_cf"
+    <item android:id="@+id/coffeeFragment"
         android:title="@string/action_coffee"
         android:icon="@drawable/baseline_local_cafe_white_24"/>
 
-    <item android:id="@+id/action_profile"
+    <item android:id="@+id/profileFragment"
         android:title="@string/action_profile"
         android:icon="@drawable/baseline_account_circle_white_24"/>
 </menu>

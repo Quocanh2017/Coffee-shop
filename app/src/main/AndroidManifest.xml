@@ -12,8 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BundleTesting">
-        <activity android:name=".login.login"></activity>
-        <activity android:name=".login.sign_up"></activity>
+        <activity android:name=".login.Login"></activity>
+        <activity android:name=".login.SignUp"></activity>
         <activity android:name=".homepage.HomePage"
             android:theme="@style/Theme.BundleTesting.NoActionBar"></activity>
 

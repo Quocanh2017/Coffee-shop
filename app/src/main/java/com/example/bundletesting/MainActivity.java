@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.bundletesting.homepage.HomePage;
-import com.example.bundletesting.login.login;
-import com.example.bundletesting.login.sign_up;
+import com.example.bundletesting.login.Login;
+import com.example.bundletesting.login.SignUp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         bt.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intentLogin = new Intent(MainActivity.this , login.class);
+                Intent intentLogin = new Intent(MainActivity.this , Login.class);
                 startActivity(intentLogin);
             }
         });
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         bt1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intentLogin = new Intent(MainActivity.this , sign_up.class);
+                Intent intentLogin = new Intent(MainActivity.this , SignUp.class);
                 startActivity(intentLogin);
             }
         });

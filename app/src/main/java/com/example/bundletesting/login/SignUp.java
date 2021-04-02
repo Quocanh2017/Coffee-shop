@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bundletesting.R;
 
-public class sign_up extends AppCompatActivity {
+public class SignUp extends AppCompatActivity {
 
     Button btn1;
 

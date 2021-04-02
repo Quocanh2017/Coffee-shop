@@ -13,4 +13,6 @@
 
     <string name="nav_header_title">This is description about me</string>
     <string name="nav_header_subtitle">quoanh.pqa@mail.com</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

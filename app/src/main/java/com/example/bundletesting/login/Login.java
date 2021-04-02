@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bundletesting.R;
 
-public class login extends Activity {
+public class Login extends Activity {
 
     Button btn1;
     EditText edit1, edit2;

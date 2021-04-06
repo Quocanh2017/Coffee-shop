@@ -36,16 +36,21 @@ public class HomePage extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+
         binding = ContentMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         toolbar = binding.toolbar;
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
         navController = Navigation.findNavController(this,R.id.nav_host_fragment);
+
+        AppBarConfiguration appBarConfig = new AppBarConfiguration.Builder(navController.getGraph()).setDrawerLayout(drawerLayout).build();
+
+
 //        new AppBarConfiguration(toolbar).Builder()
 //        AppBarConfiguration appBarConfig = new AppBarConfiguration(Set.of(R.id.home_page), drawerLayout, navController);
-        AppBarConfiguration appBarConfig = new AppBarConfiguration.Builder(navController.getGraph()).setDrawerLayout(drawerLayout).build();
 //        NavigationUI.setupActionBarWithNavController(this, navController,appBarConfig);
+
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfig);
         NavigationUI.setupWithNavController(binding.bottomNav, navController);
 

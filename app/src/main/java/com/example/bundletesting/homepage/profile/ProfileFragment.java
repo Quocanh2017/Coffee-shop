@@ -1,4 +1,4 @@
-package com.example.bundletesting.homepage;
+package com.example.bundletesting.homepage.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.bundletesting.R;
 
-public class CoffeeFragment extends Fragment {
+public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_coffee, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
         return view;
     }
 }

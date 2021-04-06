@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         tools:layout="@layout/home_activity"
-        android:name="com.example.bundletesting.homepage.HomeFragment"
+        android:name="com.example.bundletesting.homepage.home.HomeFragment"
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
@@ -23,16 +23,16 @@
     <fragment
         android:id="@+id/profileFragment"
         tools:layout="@layout/fragment_profile"
-        android:name="com.example.bundletesting.homepage.ProfileFragment"
+        android:name="com.example.bundletesting.homepage.profile.ProfileFragment"
         android:label="ProfileFragment" />
     <fragment
         android:id="@+id/coffeeFragment"
         tools:layout="@layout/fragment_coffee"
-        android:name="com.example.bundletesting.homepage.CoffeeFragment"
+        android:name="com.example.bundletesting.homepage.coffee.CoffeeFragment"
         android:label="CoffeeFragment" />
     <fragment
         android:id="@+id/tableFragment"
-        android:name="com.example.bundletesting.homepage.TableFragment"
+        android:name="com.example.bundletesting.homepage.table.TableFragment"
         android:label="TableFragment" />
 
 </navigation>

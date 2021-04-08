@@ -6,18 +6,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bundletesting.R;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.List;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class TableAdapter extends RecyclerView.Adapter<TableAdapter.tableViewHolder>{
 
     private Context context;
     private List<Table> listTable;
+
+    private IClickItemTable iClickItemTable;
+
+    public interface IClickItemTable {
+        void showBottomSheetView(Table table);
+    }
+
+    public TableAdapter(IClickItemTable iClickItemTable) {
+        this.iClickItemTable = iClickItemTable;
+    }
 
     public TableAdapter(Context context) {
         this.context = context;
@@ -49,7 +64,15 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.tableViewHol
 
         holder.imgView.setImageResource(table.getResourceImage());
         holder.textViewTable.setText(table.getNumberTable());
+        
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                iClickItemTable.showBottomSheetView(table);
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {
@@ -64,6 +87,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.tableViewHol
 
         private ImageView imgView;
         private TextView textViewTable;
+
 
         public tableViewHolder(@NonNull View itemView) {
             super(itemView);

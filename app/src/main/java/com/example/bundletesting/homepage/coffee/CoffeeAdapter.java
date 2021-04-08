@@ -7,21 +7,37 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bundletesting.R;
+import com.example.bundletesting.homepage.table.Table;
+import com.example.bundletesting.homepage.table.TableAdapter;
 
 import java.util.List;
 
-public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeViewHolder>{
+import static com.facebook.FacebookSdk.getApplicationContext;
+
+public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeViewHolder> {
 
     private Context context;
     private List<Coffee> listCoffee;
 
+    public interface IClickItemCoffee {
+        void addCoffee(Coffee coffee);
+    }
+
+    private CoffeeAdapter.IClickItemCoffee iClickItemCoffee;
+
+    public CoffeeAdapter(IClickItemCoffee iClickItemCoffee) {
+        this.iClickItemCoffee = iClickItemCoffee;
+    }
+
     public CoffeeAdapter(Context context) {
         this.context = context;
+//        this.itemListener = itemListener;
     }
 
     public void setData(List<Coffee> list){
@@ -35,6 +51,7 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
     public CoffeeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // return view
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coffee, parent, false);
+
         return new CoffeeViewHolder(view);
     }
 
@@ -48,6 +65,13 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
         holder.textViewName.setText(coffee.getName());
         holder.textViewDescription.setText(coffee.getDescription());
         holder.textViewPrice.setText(coffee.getPrice());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                iClickItemCoffee.addCoffee(coffee);
+            }
+        });
     }
 
     @Override
@@ -65,6 +89,7 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
         private TextView textViewDescription;
         private TextView textViewPrice;
 
+
         public CoffeeViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -72,6 +97,7 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
             textViewName = itemView.findViewById(R.id.tv_coffeeName);
             textViewDescription = itemView.findViewById(R.id.tv_des_coffee);
             textViewPrice = itemView.findViewById(R.id.tv_price);
-        }
+
+            }
     }
 }

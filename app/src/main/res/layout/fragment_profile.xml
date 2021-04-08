@@ -1,28 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_dark">
-
-    <TextView
-        android:id="@+id/stTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40dp"
-        android:text="Profile Fragment"
-        android:textColor="@color/white"
-        android:layout_centerInParent="true"/>
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/profile_image"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_above="@+id/stTextView"
-        android:layout_centerInParent="true"
-        android:src="@drawable/baseline_account_circle_white_24"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/cf"
         app:civ_border_width="2dp"
-        app:civ_border_color="#FF000000"/>
+        app:civ_border_color="#FF000000"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        />
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:drawableLeft="@drawable/baseline_drive_file_rename_outline_black_18"
+        android:hint="Your Name"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:drawableLeft="@drawable/baseline_drive_file_rename_outline_black_18"
+        android:hint="Your Name"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:drawableLeft="@drawable/baseline_drive_file_rename_outline_black_18"
+        android:hint="Your Name"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Your Profile"
+        android:textSize="18sp"
+        android:background="#75000000"
+        android:drawableLeft="@drawable/baseline_edit_white_18"/>
+
+</LinearLayout>

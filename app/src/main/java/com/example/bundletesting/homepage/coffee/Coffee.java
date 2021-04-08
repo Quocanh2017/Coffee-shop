@@ -1,10 +1,18 @@
 package com.example.bundletesting.homepage.coffee;
 
-public class Coffee {
+import java.io.Serializable;
+
+public class Coffee implements Serializable {
     private int resourceId;
     private String name;
     private String description;
     private String price;
+
+    public Coffee(String name, String description, String price){
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
 
     public Coffee(int resourceId, String name, String description, String price) {
         this.resourceId = resourceId;

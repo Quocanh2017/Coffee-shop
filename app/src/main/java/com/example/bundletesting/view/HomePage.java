@@ -1,14 +1,8 @@
 package com.example.bundletesting.view;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -21,12 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.bundletesting.R;
 import com.example.bundletesting.databinding.ContentMainBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
-import java.util.Set;
 
 public class HomePage extends AppCompatActivity {
     private ContentMainBinding binding;
@@ -53,9 +42,6 @@ public class HomePage extends AppCompatActivity {
 
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfig);
         NavigationUI.setupWithNavController(binding.bottomNav, navController);
-
-
     }
-
 
 }

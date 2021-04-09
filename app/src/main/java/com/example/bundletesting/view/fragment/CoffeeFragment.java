@@ -1,4 +1,4 @@
-package com.example.bundletesting.view;
+package com.example.bundletesting.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bundletesting.R;
 import com.example.bundletesting.controller.CoffeeAdapter;
 import com.example.bundletesting.model.Coffee;
+import com.example.bundletesting.view.ListCoffeeWAdd;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

@@ -1,6 +1,7 @@
 package com.example.bundletesting.controller;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.chauthai.swipereveallayout.SwipeRevealLayout;
-import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.example.bundletesting.R;
 import com.example.bundletesting.model.Coffee;
 
@@ -22,12 +21,11 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
     private Context context;
     private List<Coffee> listCoffee;
 
-    private ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
-
     public CoffeeAdapter(List<Coffee> listCoffee) {
         this.listCoffee = listCoffee;
     }
 
+    //
     public interface IClickItemCoffee {
         void addCoffee(Coffee coffee);
     }
@@ -65,27 +63,12 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
             return;
         }
 
-        viewBinderHelper.bind(holder.swipeRevealLayout, String.valueOf(coffee.getResourceId()));
-        holder.swipEditText.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        holder.swipDeleteText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listCoffee.remove(holder.getAdapterPosition());
-                notifyItemRemoved(holder.getAdapterPosition());
-            }
-        });
-
         holder.imageView.setImageResource(coffee.getResourceId());
         holder.textViewName.setText(coffee.getName());
         holder.textViewDescription.setText(coffee.getDescription());
         holder.textViewPrice.setText(coffee.getPrice());
 
+        //cho nay la click
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -109,16 +92,8 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
         private TextView textViewDescription;
         private TextView textViewPrice;
 
-        private SwipeRevealLayout swipeRevealLayout;
-        private TextView swipEditText;
-        private TextView swipDeleteText;
-
         public CoffeeViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            swipeRevealLayout = itemView.findViewById(R.id.SwipeRevealLayout);
-            swipEditText = itemView.findViewById(R.id.swip_edit);
-            swipDeleteText = itemView.findViewById(R.id.swip_delete);
 
             imageView = itemView.findViewById(R.id.img_coffee);
             textViewName = itemView.findViewById(R.id.tv_coffeeName);

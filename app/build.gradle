@@ -74,7 +74,6 @@ dependencies {
     //noinspection GradleCompatible,GradleCompatible
     implementation 'com.android.support:design:25.3.1'
 
-    //swip  to edit and delete
-    implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
+    implementation 'com.sa90.materialarcmenu:library:2.0.0'
 }
 

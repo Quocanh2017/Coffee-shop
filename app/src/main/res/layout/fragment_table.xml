@@ -15,14 +15,38 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_floating_table"
+    <com.sa90.materialarcmenu.ArcMenu
+        android:id="@+id/arc_menu_tb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_input_add"
+        app:menu_scr="@android:drawable/ic_menu_add"
+        app:menu_color="#FF0000"
+        app:menu_open="arc_left"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="16dp"
-        app:backgroundTint="#D0C51C1C"/>
+        android:layout_margin="8dp">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_floating_insert_tb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_edit_24"
+            app:backgroundTint="#FF0000"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_floating_update_tb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_update_24"
+            app:backgroundTint="#FF0000"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_floating_delete_tb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_delete_24"
+            app:backgroundTint="#FF0000"/>
+
+    </com.sa90.materialarcmenu.ArcMenu>
 
 </RelativeLayout>

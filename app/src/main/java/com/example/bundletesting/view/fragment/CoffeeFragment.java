@@ -19,6 +19,7 @@ import com.example.bundletesting.controller.CoffeeAdapter;
 import com.example.bundletesting.model.Coffee;
 import com.example.bundletesting.view.ListCoffeeWAdd;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.sa90.materialarcmenu.ArcMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,8 @@ public class CoffeeFragment extends Fragment {
 
     private RecyclerView recyclerViewCoffee;
     private CoffeeAdapter coffeeAdapter;
-    private FloatingActionButton btnFloating;
-
+//    private FloatingActionButton btnFloating;
+    private ArcMenu arcMenu;
     Toolbar toolbar;
 
     private static final int MY_REQUES_CODE = 10;
@@ -41,7 +42,7 @@ public class CoffeeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_coffee, container, false);
 
         recyclerViewCoffee = (RecyclerView) view.findViewById(R.id.rcv_coffee);
-        btnFloating = view.findViewById(R.id.btn_floating_coffee);
+        arcMenu = view.findViewById(R.id.arc_menu_cf);
 
         coffeeAdapter = new CoffeeAdapter(new CoffeeAdapter.IClickItemCoffee(){
             @Override
@@ -61,10 +62,10 @@ public class CoffeeFragment extends Fragment {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 if(dy > 0){
-                    btnFloating.hide();
+                    arcMenu.setVisibility(View.GONE);
                 }
                 else{
-                    btnFloating.show();
+                    arcMenu.setVisibility(View.VISIBLE);
                 }
                 super.onScrolled(recyclerView, dx, dy);
             }

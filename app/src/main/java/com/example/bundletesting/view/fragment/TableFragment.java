@@ -16,6 +16,7 @@ import com.example.bundletesting.controller.TableAdapter;
 import com.example.bundletesting.model.Table;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.sa90.materialarcmenu.ArcMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,8 @@ public class TableFragment extends Fragment {
 
     private RecyclerView recyclerViewTable;
     private TableAdapter tableAdapter;
-    private FloatingActionButton btnFloating;
+    private ArcMenu arcMenu;
+//    private FloatingActionButton btnFloating;
 
 //    private RecyclerView recyclerViewCoffee;
 //    private CoffeeAdapter coffeeAdapter;
@@ -37,7 +39,7 @@ public class TableFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_table, container, false);
 
         recyclerViewTable = (RecyclerView) view.findViewById(R.id.crv_table);
-        btnFloating = view.findViewById(R.id.btn_floating_table);
+        arcMenu = view.findViewById(R.id.arc_menu_tb);
 
         tableAdapter = new TableAdapter(new TableAdapter.IClickItemTable(){
             @Override
@@ -56,10 +58,10 @@ public class TableFragment extends Fragment {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 if(dy > 0){
-                    btnFloating.hide();
+                    arcMenu.setVisibility(View.GONE);
                 }
                 else{
-                    btnFloating.show();
+                    arcMenu.setVisibility(View.VISIBLE);
                 }
                 super.onScrolled(recyclerView, dx, dy);
             }

@@ -1,4 +1,4 @@
-package com.example.bundletesting.homepage.table;
+package com.example.bundletesting.model;
 
 public class Table {
     private int resourceImage;

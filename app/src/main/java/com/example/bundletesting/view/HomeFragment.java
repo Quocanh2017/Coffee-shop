@@ -1,8 +1,6 @@
-package com.example.bundletesting.homepage.home;
+package com.example.bundletesting.view;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.bundletesting.R;
 import com.example.bundletesting.databinding.HomeActivityBinding;
-import com.example.bundletesting.homepage.home.slide.SlideAdapter;
-import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
-import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController;
-import com.smarteist.autoimageslider.SliderAnimations;
+import com.example.bundletesting.controller.SlideAdapter;
 import com.smarteist.autoimageslider.SliderView;
 
 public class HomeFragment extends Fragment {
@@ -56,4 +50,5 @@ public class HomeFragment extends Fragment {
 
         return binding.getRoot();
     }
+
 }

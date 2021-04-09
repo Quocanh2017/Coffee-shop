@@ -10,7 +10,7 @@
     android:paddingLeft="16dp"
     android:paddingBottom="16dp"
     android:background="#CC9966"
-    tools:context="com.example.bundletesting.login.Login"
+    tools:context="com.example.bundletesting.view.Login"
     >
 
     <TextView

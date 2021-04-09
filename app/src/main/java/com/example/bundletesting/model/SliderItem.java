@@ -1,4 +1,4 @@
-package com.example.bundletesting.homepage.home.slide;
+package com.example.bundletesting.model;
 
 public class SliderItem {
 

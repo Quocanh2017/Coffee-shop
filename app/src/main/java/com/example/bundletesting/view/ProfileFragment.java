@@ -1,4 +1,4 @@
-package com.example.bundletesting.homepage.profile;
+package com.example.bundletesting.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

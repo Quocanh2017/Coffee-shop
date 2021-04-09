@@ -1,4 +1,4 @@
-package com.example.bundletesting.homepage.coffee;
+package com.example.bundletesting.model;
 
 import java.io.Serializable;
 

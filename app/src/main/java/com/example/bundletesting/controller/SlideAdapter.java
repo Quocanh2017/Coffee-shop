@@ -1,4 +1,4 @@
-package com.example.bundletesting.homepage.home.slide;
+package com.example.bundletesting.controller;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.bundletesting.R;
+import com.example.bundletesting.model.SliderItem;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.ArrayList;

@@ -54,8 +54,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
-    //add libs
-    implementation 'com.google.android.material:material:1.2.1'
     //lib recycleview
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
@@ -67,16 +65,16 @@ dependencies {
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
     implementation 'com.github.smarteist:autoimageslider:1.4.0-appcompat'
 
-    testImplementation 'junit:junit:4.12'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     androidTestImplementation 'androidx.test:runner:1.1.1'
 
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
-    implementation 'com.google.android.material:material:1.3.0'
-
     //noinspection GradleCompatible,GradleCompatible
     implementation 'com.android.support:design:25.3.1'
+
+    //swip  to edit and delete
+    implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
 }
 

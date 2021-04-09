@@ -1,4 +1,4 @@
-package com.example.bundletesting.homepage.table;
+package com.example.bundletesting.controller;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,18 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bundletesting.R;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.example.bundletesting.model.Table;
 
 import java.util.List;
-
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class TableAdapter extends RecyclerView.Adapter<TableAdapter.tableViewHolder>{
 

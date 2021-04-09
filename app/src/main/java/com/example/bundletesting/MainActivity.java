@@ -13,9 +13,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.bundletesting.homepage.HomePage;
-import com.example.bundletesting.login.Login;
-import com.example.bundletesting.login.SignUp;
+import com.example.bundletesting.view.HomePage;
+import com.example.bundletesting.view.Login;
+import com.example.bundletesting.view.SignUp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

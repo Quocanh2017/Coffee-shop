@@ -1,4 +1,4 @@
-package com.example.bundletesting.login;
+package com.example.bundletesting.view;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,8 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bundletesting.R;
 

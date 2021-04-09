@@ -1,4 +1,4 @@
-package com.example.bundletesting.login;
+package com.example.bundletesting.view;
 
 import android.os.Bundle;
 import android.view.View;

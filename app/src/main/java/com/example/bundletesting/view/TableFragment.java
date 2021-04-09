@@ -1,4 +1,4 @@
-package com.example.bundletesting.homepage.table;
+package com.example.bundletesting.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,17 +8,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bundletesting.R;
-import com.example.bundletesting.homepage.coffee.Coffee;
-import com.example.bundletesting.homepage.coffee.CoffeeAdapter;
-import com.example.bundletesting.homepage.table.Table;
-import com.example.bundletesting.homepage.table.TableAdapter;
+import com.example.bundletesting.controller.TableAdapter;
+import com.example.bundletesting.model.Table;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +24,7 @@ public class TableFragment extends Fragment {
 
     private RecyclerView recyclerViewTable;
     private TableAdapter tableAdapter;
+    private FloatingActionButton btnFloating;
 
 //    private RecyclerView recyclerViewCoffee;
 //    private CoffeeAdapter coffeeAdapter;
@@ -39,6 +37,8 @@ public class TableFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_table, container, false);
 
         recyclerViewTable = (RecyclerView) view.findViewById(R.id.crv_table);
+        btnFloating = view.findViewById(R.id.btn_floating_table);
+
         tableAdapter = new TableAdapter(new TableAdapter.IClickItemTable(){
             @Override
             public void showBottomSheetView(Table table) {
@@ -51,6 +51,19 @@ public class TableFragment extends Fragment {
 
         tableAdapter.setData(getListTable());
         recyclerViewTable.setAdapter(tableAdapter);
+
+        recyclerViewTable.addOnScrollListener(new RecyclerView.OnScrollListener(){
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                if(dy > 0){
+                    btnFloating.hide();
+                }
+                else{
+                    btnFloating.show();
+                }
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
 
         return view;
     }

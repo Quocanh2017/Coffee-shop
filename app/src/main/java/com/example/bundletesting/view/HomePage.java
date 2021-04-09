@@ -1,4 +1,4 @@
-package com.example.bundletesting.homepage;
+package com.example.bundletesting.view;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;

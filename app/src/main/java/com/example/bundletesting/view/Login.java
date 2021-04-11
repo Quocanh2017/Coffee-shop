@@ -1,15 +1,18 @@
 package com.example.bundletesting.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.bundletesting.R;
 
-public class Login extends Activity {
+public class Login extends AppCompatActivity {
 
     Button btn1;
     EditText edit1, edit2;
@@ -31,6 +34,8 @@ public class Login extends Activity {
             public void onClick(View v){
                 if(edit1.getText().toString().equals("admin") && edit2.getText().toString().equals("admin")){
                     Toast.makeText(getApplicationContext(),"Login successfull", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Login.this, HomePage.class);
+                    startActivity(intent);
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Login fail", Toast.LENGTH_SHORT).show();

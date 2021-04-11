@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Connected to network
 
+        Intent intentLogin = new Intent(MainActivity.this , Login.class);
+        startActivity(intentLogin);
+
         ConnectivityManager connMgr =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         boolean isWifiConn = false;
@@ -70,34 +73,33 @@ public class MainActivity extends AppCompatActivity {
 
         Activity context = new Activity();
 
-        bt = (Button) findViewById(R.id.bt);
-        bt1 = (Button) findViewById(R.id.bt_1);
-        bt2 = (Button) findViewById(R.id.bt_2);
-
-        bt.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intentLogin = new Intent(MainActivity.this , Login.class);
-                startActivity(intentLogin);
-            }
-        });
-
-
-        bt1.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intentLogin = new Intent(MainActivity.this , SignUp.class);
-                startActivity(intentLogin);
-            }
-        });
-
-        bt2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intentLogin = new Intent(MainActivity.this , HomePage.class);
-                startActivity(intentLogin);
-            }
-        });
+//        bt = (Button) findViewById(R.id.bt);
+//        bt1 = (Button) findViewById(R.id.bt_1);
+//        bt2 = (Button) findViewById(R.id.bt_2);
+//
+//        bt.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//
+//            }
+//        });
+//
+//
+//        bt1.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                Intent intentLogin = new Intent(MainActivity.this , SignUp.class);
+//                startActivity(intentLogin);
+//            }
+//        });
+//
+//        bt2.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                Intent intentLogin = new Intent(MainActivity.this , HomePage.class);
+//                startActivity(intentLogin);
+//            }
+//        });
 
     }
 

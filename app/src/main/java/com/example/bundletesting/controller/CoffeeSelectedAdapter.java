@@ -1,5 +1,6 @@
 package com.example.bundletesting.controller;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bundletesting.R;
 import com.example.bundletesting.model.CoffeeSelected;
+import com.example.bundletesting.view.ListCoffeeWAdd;
 
 import java.util.List;
 
 public class CoffeeSelectedAdapter extends RecyclerView.Adapter<CoffeeSelectedAdapter.CoffeeSelectedViewHolder>{
 
     private List<CoffeeSelected> listCoffeeSelected;
+    private Context context;
+
+    public CoffeeSelectedAdapter(Context context) {
+        this.context = context;
+    }
 
     public void setData(List<CoffeeSelected> list){
         this.listCoffeeSelected = list;

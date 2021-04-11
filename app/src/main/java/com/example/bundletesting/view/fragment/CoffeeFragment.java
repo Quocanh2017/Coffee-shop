@@ -2,14 +2,16 @@ package com.example.bundletesting.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +20,7 @@ import com.example.bundletesting.R;
 import com.example.bundletesting.controller.CoffeeAdapter;
 import com.example.bundletesting.model.Coffee;
 import com.example.bundletesting.view.ListCoffeeWAdd;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sa90.materialarcmenu.ArcMenu;
 
@@ -32,7 +35,7 @@ public class CoffeeFragment extends Fragment {
     private CoffeeAdapter coffeeAdapter;
 //    private FloatingActionButton btnFloating;
     private ArcMenu arcMenu;
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
 
     private static final int MY_REQUES_CODE = 10;
 
@@ -51,6 +54,27 @@ public class CoffeeFragment extends Fragment {
                 addCoffeeToTable(coffee);
             }
         });
+
+        toolbar = view.findViewById(R.id.fragment_coffee_tool_bar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // up button
+                Log.i("Test", "Back");
+            }
+        });
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Log.i("Test", "ITEM");
+
+                // menu item
+                //cai fragment nao ma no bi tran len thi ong them margin_top: ?attr/appbarsize Nhe
+                return true;
+            }
+        });
+
 
         LinearLayoutManager linearLinearLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
         recyclerViewCoffee.setLayoutManager(linearLinearLayoutManager);
@@ -76,6 +100,7 @@ public class CoffeeFragment extends Fragment {
 
 
     private void addCoffeeToTable(Coffee coffee){
+
         Intent intent = new Intent(this.getContext(), ListCoffeeWAdd.class);
 
         Bundle bundle = new Bundle();

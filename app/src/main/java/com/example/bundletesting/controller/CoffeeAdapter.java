@@ -1,6 +1,7 @@
 package com.example.bundletesting.controller;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import java.util.List;
 public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeViewHolder> {
 
     private Context context;
+//    int selectedPosition=-1;
     private List<Coffee> listCoffee;
 
     public CoffeeAdapter(List<Coffee> listCoffee) {
@@ -72,9 +74,11 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+//                holder.itemView.setBackgroundColor(Color.parseColor("#000000"));
                 iClickItemCoffee.addCoffee(coffee);
             }
         });
+//        holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
     }
 
     @Override

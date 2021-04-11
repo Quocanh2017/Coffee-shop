@@ -1,5 +1,6 @@
 package com.example.bundletesting.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -49,6 +50,8 @@ public class SignUp extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Please enter all infomation",Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    Intent intent = new Intent(SignUp.this, HomePage.class);
+                    startActivity(intent);
                     Toast.makeText(getApplicationContext(),"Sign up successfull",Toast.LENGTH_SHORT).show();
                 }
             }

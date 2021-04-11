@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ import java.util.List;
 public class ListCoffeeWAdd extends AppCompatActivity {
 
     private Coffee coffee;
+    private Button button;
 
     private RecyclerView recyclerViewCoffeeSelected;
     private CoffeeSelectedAdapter coffeeSelectedAdapter;
@@ -48,25 +50,27 @@ public class ListCoffeeWAdd extends AppCompatActivity {
         recyclerViewCoffeeSelected.setAdapter(coffeeSelectedAdapter);
 
 
-//        button = findViewById(R.id.btn_add_to_table);
-//        button.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                clickOpenBottomSheetSelectTable();
-//            }
-//
-//        });
+        button = findViewById(R.id.btn_add_to_table);
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                clickOpenBottomSheetSelectTable();
+            }
+
+        });
 
 //        Toast.makeText(getApplicationContext(), coffee.toString(), Toast.LENGTH_SHORT);
 
     }
 
     public void clickOpenBottomSheetSelectTable() {
-        View viewDialog = getLayoutInflater().inflate(R.layout.bottom_sheet_add_to_table, null);
-
-        BottomSheetDialog dialog = new BottomSheetDialog(this);
-        dialog.setContentView(viewDialog);
-        dialog.show();
+        TableSelectedView tableSelectedView = new TableSelectedView(new TableSelectedAdapter.IClickItemSelectTable() {
+            @Override
+            public void SelectedTableItem(TableSelected tableSelected) {
+                Log.i("click",tableSelected.getNumberTable().toString());
+            }
+        });
+        tableSelectedView.show(getSupportFragmentManager(), tableSelectedView.getTag());
     }
 
     public List<CoffeeSelected> getListCoffeeSelected(){
@@ -75,21 +79,8 @@ public class ListCoffeeWAdd extends AppCompatActivity {
         coffee = (Coffee) getIntent().getExtras().get("Coffee");
 
         list.add(new CoffeeSelected(coffee.getResourceId(), coffee.getName(), coffee.getPrice()));
-        return list;
+       return list;
     }
 
-    public List<TableSelected> getListTableSelected(){
-        List<TableSelected> list = new ArrayList<>();
-
-        list.add(new TableSelected("table 1"));
-        list.add(new TableSelected("table 2"));
-        list.add(new TableSelected("table 3"));
-        list.add(new TableSelected("table 4"));
-        list.add(new TableSelected("table 5"));
-        list.add(new TableSelected("table 6"));
-        list.add(new TableSelected("table 7"));
-        list.add(new TableSelected("table 8"));
-        return list;
-    }
 
 }

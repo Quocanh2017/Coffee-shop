@@ -1,5 +1,6 @@
 package com.example.bundletesting.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.bundletesting.R;
 import com.example.bundletesting.databinding.ContentMainBinding;
+import com.example.bundletesting.view.fragment.ProfileFragment;
 
 
 public class HomePage extends AppCompatActivity {
@@ -57,6 +59,20 @@ public class HomePage extends AppCompatActivity {
                 }else{
                     toolbar.setVisibility(View.VISIBLE);
                     binding.contentMainAppBar.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                if(destination.getId() == R.id.action_profile){
+                    Intent intent = new Intent(HomePage.this, ProfileFragment.class);
+                    startActivity(intent);
+                }
+                if(destination.getId() == R.id.action_logout){
+                    Intent intent = new Intent(HomePage.this, Login.class);
+                    startActivity(intent);
                 }
             }
         });

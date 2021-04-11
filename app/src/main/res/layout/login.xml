@@ -5,10 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    android:paddingLeft="16dp"
-    android:paddingBottom="16dp"
+    android:padding="16dp"
     android:background="#CC9966"
     tools:context="com.example.bundletesting.view.Login"
     >
@@ -22,11 +19,10 @@
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/btn_login_facebook"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button1"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="20dp" />
 
     <ImageView
         android:id="@+id/imageView1"
@@ -72,26 +68,22 @@
         android:layout_height="40dp"
         android:text="Login"
         android:layout_below="@+id/editText2"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="20dp"
-        android:layout_alignLeft="@+id/checkBox1"
-        android:layout_marginLeft="200dp"
-        />
-
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:text="keep me logged in"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         />
 
     <TextView
+        android:id="@+id/tv_create_account"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_below="@+id/checkBox1"
-        android:text=""/>
+        android:layout_height="wrap_content"
+        android:textStyle="italic"
+        android:text="Create a new account"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/editText2"
+        android:layout_marginLeft="30dp"
+        />
 
 
 </RelativeLayout>

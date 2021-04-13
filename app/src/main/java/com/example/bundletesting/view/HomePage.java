@@ -95,65 +95,6 @@ public class HomePage extends AppCompatActivity {
                 }
             }
         });
-
-        viewPager = findViewById(R.id.view_pager);
-        circleIndicator = findViewById(R.id.circle_indicator);
-
-        listPhoto = getListPhoto();
-        slideAdapter = new SlideAdapter(this, listPhoto);
-        viewPager.setAdapter(slideAdapter);
-
-        circleIndicator.setViewPager(viewPager);
-        slideAdapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
-
-        autoSlideImage();
     }
 
-    public List<SliderItem> getListPhoto(){
-        List<SliderItem> list = new ArrayList<>();
-        list.add(new SliderItem(R.drawable.p1));
-        list.add(new SliderItem(R.drawable.p2));
-        list.add(new SliderItem(R.drawable.p3));
-        list.add(new SliderItem(R.drawable.p4));
-
-        return list;
-    }
-
-    private void autoSlideImage(){
-        if(listPhoto == null || listPhoto.isEmpty() || viewPager == null){
-            return;
-        }
-        //init timer
-        if(timer == null){
-            timer = new Timer();
-        }
-        timer.schedule(new TimerTask(){
-            @Override
-            public void run() {
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                        int currentItem = viewPager.getCurrentItem();
-                        int totalItem = listPhoto.size() - 1;
-                        if(currentItem < totalItem){
-                            currentItem++;
-                            viewPager.setCurrentItem(currentItem);
-                        }
-                        else{
-                            viewPager.setCurrentItem(0);
-                        }
-                    }
-                });
-            }
-        }, 500, 2000);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if(timer != null){
-            timer.cancel();
-            timer = null;
-        }
-    }
 }

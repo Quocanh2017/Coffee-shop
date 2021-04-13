@@ -76,9 +76,9 @@ public class ListCoffeeWAdd extends AppCompatActivity {
     public List<CoffeeSelected> getListCoffeeSelected(){
         List<CoffeeSelected> list = new ArrayList<>();
 
-        coffee = (Coffee) getIntent().getExtras().get("Coffee");
-
-        list.add(new CoffeeSelected(coffee.getResourceId(), coffee.getName(), coffee.getPrice()));
+//        coffee = (Coffee) getIntent().getExtras().get("Coffee");
+//
+//        list.add(new CoffeeSelected(coffee.getResourceId(), coffee.getName(), coffee.getPrice()));
 
        return list;
     }

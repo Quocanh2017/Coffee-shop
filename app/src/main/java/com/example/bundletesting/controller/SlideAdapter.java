@@ -1,78 +1,63 @@
 package com.example.bundletesting.controller;
 
+
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
+
 import com.bumptech.glide.Glide;
 import com.example.bundletesting.R;
 import com.example.bundletesting.model.SliderItem;
-import com.smarteist.autoimageslider.SliderViewAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class SlideAdapter extends SliderViewAdapter<SlideAdapter.SliderAdapterVH> {
+public class SlideAdapter extends PagerAdapter {
 
     private Context context;
-    private List<SliderItem> mSliderItems = new ArrayList<>();
+    private List<SliderItem> list;
 
-    public SlideAdapter(Context context) {
+    public SlideAdapter(Context context, List<SliderItem> list) {
         this.context = context;
+        this.list = list;
     }
 
+    @NonNull
     @Override
-    public SliderAdapterVH onCreateViewHolder(ViewGroup parent) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.slide_image_home, null);
-        return new SliderAdapterVH(inflate);
-    }
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        View view = LayoutInflater.from(container.getContext()).inflate(R.layout.slide_image_home, container, false);
+        ImageView imgPhoto = view.findViewById(R.id.img_photo);
 
-    @Override
-    public void onBindViewHolder(SliderAdapterVH viewHolder, final int position) {
+        SliderItem photo = list.get(position);
+        if(photo != null){
+            Glide.with(context).load(photo.getImageUrl()).into(imgPhoto);
+        }
 
-        SliderItem sliderItem = mSliderItems.get(position);
+        //add view to viewgroup
+        container.addView(view);
 
-        viewHolder.textViewDescription.setText(sliderItem.getDescription());
-        viewHolder.textViewDescription.setTextSize(16);
-        viewHolder.textViewDescription.setTextColor(Color.WHITE);
-        Glide.with(viewHolder.itemView)
-                .load(sliderItem.getImageUrl())
-                .fitCenter()
-                .into(viewHolder.imageViewBackground);
-
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
-            }
-        });
+        return view;
     }
 
     @Override
     public int getCount() {
-        //slider view count could be dynamic size
-        return mSliderItems.size();
-    }
-
-    class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
-
-        View itemView;
-        ImageView imageViewBackground;
-        ImageView imageGifContainer;
-        TextView textViewDescription;
-
-        public SliderAdapterVH(View itemView) {
-            super(itemView);
-
-            imageViewBackground = itemView.findViewById(R.id.iv_auto_image_slider);
-            imageGifContainer = itemView.findViewById(R.id.iv_gif_container);
-            textViewDescription = itemView.findViewById(R.id.tv_auto_image_slider);
-            //this.itemView = itemView;
+        if(list != null){
+            return list.size();
         }
+        return 0;
     }
 
+    @Override
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+        return view == object;
+    }
+
+    @Override
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        container.removeView((View) object);
+    }
 }

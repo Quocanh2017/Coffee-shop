@@ -2,22 +2,17 @@ package com.example.bundletesting.model;
 
 public class SliderItem {
 
-    private String description;
-    private String imageUrl;
+    private int resourceId;
 
-    public String getDescription() {
-        return description;
+    public SliderItem(int resourceId) {
+        this.resourceId = resourceId;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public int getImageUrl() {
+        return resourceId;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageUrl(int imageUrl) {
+        this.resourceId = imageUrl;
     }
 }

@@ -84,14 +84,6 @@ public class CoffeeFragment extends Fragment {
                 addCoffeeToTable(coffee);
             }
         });
-        coffeeAdapter.setData(list);
-        btnAddCoffee.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                addCoffee();
-            }
-        });
 
         //floating button add to recyclerview
         btnFloatingAdd = view.findViewById(R.id.btn_floating_insert_cf);
@@ -101,6 +93,7 @@ public class CoffeeFragment extends Fragment {
                 openAddDialog(Gravity.CENTER);
             }
         });
+
         btnFloatingEdit = view.findViewById(R.id.btn_floating_update_cf);
         btnFloatingDelete = view.findViewById(R.id.btn_floating_delete_cf);
 
@@ -119,13 +112,12 @@ public class CoffeeFragment extends Fragment {
                 // menu item
                 //cai fragment nao ma no bi tran len thi ong them margin_top: ?attr/appbarsize Nhe
                 Log.i("Test", "ITEM");
-//                Intent intent = new Intent(, ListCoffeeWAdd.class);
-//                startActivity(intent);
+                Intent intent = new Intent(view.getContext(), ListCoffeeWAdd.class);
+                startActivity(intent);
 
                 return true;
             }
         });
-
 
         LinearLayoutManager linearLinearLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
         recyclerViewCoffee.setLayoutManager(linearLinearLayoutManager);
@@ -145,6 +137,13 @@ public class CoffeeFragment extends Fragment {
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
+
+//        btnAddCoffee.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                addCoffee();
+//            }
+//        });
 
         return view;
     }

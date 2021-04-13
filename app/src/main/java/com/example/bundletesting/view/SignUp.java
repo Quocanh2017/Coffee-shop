@@ -2,6 +2,7 @@ package com.example.bundletesting.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bundletesting.R;
+import com.example.bundletesting.model.User;
+import com.example.bundletesting.model.database.CoffeeDatabase;
 
 public class SignUp extends AppCompatActivity {
 
@@ -50,11 +53,35 @@ public class SignUp extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Please enter all infomation",Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    addUser();
                     Intent intent = new Intent(SignUp.this, HomePage.class);
                     startActivity(intent);
                     Toast.makeText(getApplicationContext(),"Sign up successfull",Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    private void addUser(){
+        String sUserName = edit1.getText().toString().trim();
+        String sAccount = edit2.getText().toString().trim();
+        String sPassword = edit3.getText().toString().trim();
+        String sRetypePassword = edit4.getText().toString().trim();
+
+        if (TextUtils.isEmpty(sUserName) || TextUtils.isEmpty(sAccount) || TextUtils.isEmpty(sPassword)){
+            return;
+        }
+        User user = new User(sUserName, sAccount, sPassword);
+        CoffeeDatabase.getInstance(this).userDao().insertUser(user);
+        Toast.makeText(this, "Add user successfully", Toast.LENGTH_SHORT).show();
+
+        edit1.setText("");
+        edit2.setText("");
+        edit3.setText("");
+        edit4.setText("");
+    }
+
+    private void initUI(){
+
     }
 }

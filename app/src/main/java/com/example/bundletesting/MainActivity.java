@@ -47,31 +47,31 @@ public class MainActivity extends AppCompatActivity {
         Intent intentLogin = new Intent(MainActivity.this , Login.class);
         startActivity(intentLogin);
 
-        ConnectivityManager connMgr =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        boolean isWifiConn = false;
-        boolean isMobileConn = false;
-        for (Network network : connMgr.getAllNetworks()) {
-            NetworkInfo networkInfo = connMgr.getNetworkInfo(network);
-            if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
-                isWifiConn |= networkInfo.isConnected();
-                System.out.println("hello");
-            }
-            if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
-                isMobileConn |= networkInfo.isConnected();
-                System.out.println("hi");
-
-            }
-        }
-        Log.d(DEBUG_TAG, "Wifi connected: " + isWifiConn);
-        Log.d(DEBUG_TAG, "Mobile connected: " + isMobileConn);
+//        ConnectivityManager connMgr =
+//                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//        boolean isWifiConn = false;
+//        boolean isMobileConn = false;
+//        for (Network network : connMgr.getAllNetworks()) {
+//            NetworkInfo networkInfo = connMgr.getNetworkInfo(network);
+//            if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+//                isWifiConn |= networkInfo.isConnected();
+//                System.out.println("hello");
+//            }
+//            if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
+//                isMobileConn |= networkInfo.isConnected();
+//                System.out.println("hi");
+//
+//            }
+//        }
+//        Log.d(DEBUG_TAG, "Wifi connected: " + isWifiConn);
+//        Log.d(DEBUG_TAG, "Mobile connected: " + isMobileConn);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
 
         myRef.setValue("Hello, World!");
 
-        Activity context = new Activity();
+//        Activity context = new Activity();
 
 //        bt = (Button) findViewById(R.id.bt);
 //        bt1 = (Button) findViewById(R.id.bt_1);

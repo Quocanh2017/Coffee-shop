@@ -7,8 +7,9 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.bundletesting.model.Coffee;
+import com.example.bundletesting.model.User;
 
-@Database(entities ={Coffee.class}, version = 1)
+@Database(entities ={Coffee.class, User.class}, version = 1)
 public abstract class CoffeeDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "coffee.db";
     private static CoffeeDatabase instance;
@@ -22,4 +23,6 @@ public abstract class CoffeeDatabase extends RoomDatabase {
         return instance;
     }
     public abstract CoffeeDAO coffeeDAO();
+
+    public abstract UserDAO userDao();
 }

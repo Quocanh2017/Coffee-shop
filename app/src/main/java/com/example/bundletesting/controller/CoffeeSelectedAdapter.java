@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bundletesting.R;
+import com.example.bundletesting.model.Coffee;
 import com.example.bundletesting.model.CoffeeSelected;
 import com.example.bundletesting.view.ListCoffeeWAdd;
 
@@ -18,14 +19,14 @@ import java.util.List;
 
 public class CoffeeSelectedAdapter extends RecyclerView.Adapter<CoffeeSelectedAdapter.CoffeeSelectedViewHolder>{
 
-    private List<CoffeeSelected> listCoffeeSelected;
+    private List<Coffee> listCoffeeSelected;
     private Context context;
 
     public CoffeeSelectedAdapter(Context context) {
         this.context = context;
     }
 
-    public void setData(List<CoffeeSelected> list){
+    public void setData(List<Coffee> list){
         this.listCoffeeSelected = list;
         notifyDataSetChanged();
     }
@@ -39,7 +40,7 @@ public class CoffeeSelectedAdapter extends RecyclerView.Adapter<CoffeeSelectedAd
 
     @Override
     public void onBindViewHolder(@NonNull CoffeeSelectedViewHolder holder, int position) {
-        CoffeeSelected coffeeSelected = listCoffeeSelected.get(position);
+        Coffee coffeeSelected = listCoffeeSelected.get(position);
         if (coffeeSelected == null){
             return;
         }

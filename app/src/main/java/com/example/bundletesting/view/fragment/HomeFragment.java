@@ -42,10 +42,11 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         binding = HomeActivityBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
         viewPager = binding.viewPageHome;
 
-        mViewPager = container.findViewById(R.id.view_pager);
-        circleIndicator = container.findViewById(R.id.circle_indicator);
+        mViewPager = root.findViewById(R.id.view_pager);
+        circleIndicator = root.findViewById(R.id.circle_indicator);
 
         listPhoto = getListPhoto();
         slideAdapter = new SlideAdapter(this.getContext(), listPhoto);
@@ -56,7 +57,7 @@ public class HomeFragment extends Fragment {
 
         autoSlideImage();
 
-        return binding.getRoot();
+        return root;
     }
 
     public List<SliderItem> getListPhoto(){

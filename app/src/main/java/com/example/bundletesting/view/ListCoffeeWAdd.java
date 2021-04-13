@@ -46,7 +46,9 @@ public class ListCoffeeWAdd extends AppCompatActivity {
         LinearLayoutManager linearLinearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         recyclerViewCoffeeSelected.setLayoutManager(linearLinearLayoutManager);
 
-        coffeeSelectedAdapter.setData(getListCoffeeSelected());
+        List<Coffee> list = (ArrayList<Coffee>) getIntent().getExtras().getSerializable("Coffee");
+
+        coffeeSelectedAdapter.setData(list);
         recyclerViewCoffeeSelected.setAdapter(coffeeSelectedAdapter);
 
 
@@ -58,6 +60,9 @@ public class ListCoffeeWAdd extends AppCompatActivity {
             }
 
         });
+
+
+        Log.d("size", "onCreate: " + list.size());
 
 //        Toast.makeText(getApplicationContext(), coffee.toString(), Toast.LENGTH_SHORT);
 
@@ -80,7 +85,7 @@ public class ListCoffeeWAdd extends AppCompatActivity {
 //
 //        list.add(new CoffeeSelected(coffee.getResourceId(), coffee.getName(), coffee.getPrice()));
 
-       return list;
+        return list;
     }
 
 

@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bundletesting.R;
 import com.example.bundletesting.controller.CoffeeAdapter;
 import com.example.bundletesting.model.Coffee;
+import com.example.bundletesting.model.CoffeeSelected;
 import com.example.bundletesting.model.database.CoffeeDatabase;
 import com.example.bundletesting.view.HomePage;
 import com.example.bundletesting.view.ListCoffeeWAdd;
@@ -36,6 +37,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sa90.materialarcmenu.ArcMenu;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +59,8 @@ public class CoffeeFragment extends Fragment {
     private Button btnAddCoffee;
 
     List<Coffee> list = new ArrayList<>();
+
+    List<Coffee> selectedList = new ArrayList<>();
 
     private ArcMenu arcMenu;
     MaterialToolbar toolbar;
@@ -111,9 +115,13 @@ public class CoffeeFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem item) {
                 // menu item
                 //cai fragment nao ma no bi tran len thi ong them margin_top: ?attr/appbarsize Nhe
-                Log.i("Test", "ITEM");
-                Intent intent = new Intent(view.getContext(), ListCoffeeWAdd.class);
-                startActivity(intent);
+                Intent intent = new Intent(getActivity(), ListCoffeeWAdd.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("Coffee", (Serializable) selectedList);
+                intent.putExtras(bundle);
+
+                startActivityForResult(intent, MY_REQUES_CODE);
 
                 return true;
             }
@@ -198,14 +206,7 @@ public class CoffeeFragment extends Fragment {
     }
 
     private void addCoffeeToTable(Coffee coffee){
-
-        Intent intent = new Intent(this.getContext(), ListCoffeeWAdd.class);
-
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("Coffee", coffee);
-        intent.putExtras(bundle);
-
-        startActivityForResult(intent, MY_REQUES_CODE);
+        selectedList.add(coffee);
     }
 
     private List<Coffee> getListCoffee(){

@@ -19,6 +19,7 @@
         />
 
     <EditText
+        android:id="@+id/edit_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
@@ -29,6 +30,7 @@
         android:layout_marginBottom="10dp"/>
 
     <EditText
+        android:id="@+id/edit_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
@@ -39,6 +41,7 @@
         android:layout_marginBottom="10dp"/>
 
     <EditText
+        android:id="@+id/edit_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
@@ -50,6 +53,7 @@
         android:layout_marginBottom="10dp"/>
 
     <EditText
+        android:id="@+id/edit_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"

@@ -1,33 +1,52 @@
 package com.example.bundletesting.view;
 
 import android.Manifest;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bundletesting.R;
+import com.example.bundletesting.model.User;
+import com.example.bundletesting.model.database.CoffeeDatabase;
+import com.example.bundletesting.view.fragment.ProfileFragment;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 import gun0912.tedbottompicker.TedBottomPicker;
 
 public class ChangeProfile extends AppCompatActivity {
 
+    private static final int REQUEST_CODE = 10;
     private ImageView imgPhoto;
+    private EditText editName;
+    private EditText editAccount;
+    private EditText editPassword;
+    private EditText editAddress;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.change_profile);
+
+        editName = findViewById(R.id.edit_name);
+        editAccount = findViewById(R.id.edit_account);
+        editPassword = findViewById(R.id.edit_password);
+        editAddress = findViewById(R.id.edit_address);
 
         imgPhoto = findViewById(R.id.change_profile_image);
         imgPhoto.setOnClickListener(new View.OnClickListener(){
@@ -37,6 +56,39 @@ public class ChangeProfile extends AppCompatActivity {
             }
         });
 
+        button = findViewById(R.id.btn_edit_profile);
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                addProfile();
+                updateProfile();
+            }
+        });
+    }
+
+    private void addProfile() {
+        String sEditName = editName.getText().toString().trim();
+        String sEditAccount = editAccount.getText().toString().trim();
+        String sEditPassword = editPassword.getText().toString().trim();
+        String sEditAddress = editAddress.getText().toString().trim();
+
+        if(TextUtils.isEmpty(sEditName) || TextUtils.isEmpty(sEditAccount) || TextUtils.isEmpty(sEditPassword) || TextUtils.isEmpty(sEditAddress)){
+            return;
+        }
+
+        User user = new User(sEditName, sEditAccount, sEditPassword, sEditAddress);
+        CoffeeDatabase.getInstance(this).userDao().insertUser(user);
+        Toast.makeText(this, "change profile successfully",Toast.LENGTH_SHORT).show();
+
+        editName.setText("");
+        editAccount.setText("");
+        editPassword.setText("");
+        editAddress.setText("");
+    }
+
+    private void updateProfile() {
+        Intent intent = new Intent(this, ProfileFragment.class);
+        startActivity(intent);
     }
 
     //request permission from user

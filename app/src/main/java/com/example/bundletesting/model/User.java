@@ -1,16 +1,51 @@
 package com.example.bundletesting.model;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "user")
-public class User {
+public class User implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
     private String userName;
     private String account;
     private String password;
+    private int resourceId;
+    private String address;
+
+    public User(String userName, String account, String password, int resourceId, String address) {
+        this.userName = userName;
+        this.account = account;
+        this.password = password;
+        this.resourceId = resourceId;
+        this.address = address;
+    }
+    public User(String userName, String account, String password, String address) {
+        this.userName = userName;
+        this.account = account;
+        this.password = password;
+        this.address = address;
+    }
+
+    public int getResourceId() {
+        return resourceId;
+    }
+
+    public void setResourceId(int resourceId) {
+        this.resourceId = resourceId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public User(String userName, String account, String password) {
         this.userName = userName;

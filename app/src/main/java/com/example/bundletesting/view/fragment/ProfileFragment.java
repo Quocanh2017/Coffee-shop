@@ -14,13 +14,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.bundletesting.R;
+import com.example.bundletesting.model.User;
+import com.example.bundletesting.model.database.CoffeeDatabase;
 import com.example.bundletesting.view.ChangeProfile;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProfileFragment extends Fragment {
+
     private Button button;
     private TextView edit1;
     private TextView edit2;
     private TextView edit3;
+    private User user;
+    List<User> list = new ArrayList<>();
 
     @Nullable
     @Override
@@ -40,6 +48,18 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+
+        edit1.setText(list.get(0).getUserName());
+        edit1.setText(list.get(0).getAccount());
+        edit1.setText(list.get(0).getAddress());
+
         return view;
+    }
+
+    private List<User> getListUser(String account, String password){
+        list = CoffeeDatabase.getInstance(this.getContext()).userDao().getListUser(account, password);
+//        Toast.makeText(getApplicationContext(), list.get(0).getUserName(), Toast.LENGTH_SHORT).show();
+
+        return list;
     }
 }

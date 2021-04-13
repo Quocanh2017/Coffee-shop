@@ -26,7 +26,7 @@
         android:textStyle="bold"
         android:drawableLeft="@drawable/baseline_drive_file_rename_outline_black_18"
         android:hint="Your Name"
-        android:text="Admin"
+        android:text="admin"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"/>
 
@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:text="Admin"
+        android:text="admin"
         android:drawableLeft="@drawable/baseline_drive_file_rename_outline_black_18"
         android:hint="Your Account"
         android:textStyle="bold"

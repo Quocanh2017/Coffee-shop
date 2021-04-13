@@ -15,4 +15,7 @@ public interface UserDAO {
 
     @Query("select * from user where userName=:userName and password=:password")
     List<User> getListUser(String userName, String password);
+
+    @Query("select * from user")
+    List<User> getListUser();
 }

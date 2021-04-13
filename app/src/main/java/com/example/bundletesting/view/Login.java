@@ -12,9 +12,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.bundletesting.view.Constants;
+import com.example.bundletesting.Constants;
 import com.example.bundletesting.R;
-import com.example.bundletesting.view.SharePrefers;
+import com.example.bundletesting.SharePrefers;
 import com.example.bundletesting.model.User;
 import com.example.bundletesting.model.database.CoffeeDatabase;
 import com.example.bundletesting.model.database.UserDAO;

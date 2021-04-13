@@ -1,4 +1,4 @@
-package com.example.bundletesting.view;
+package com.example.bundletesting;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -1,5 +1,7 @@
 package com.example.bundletesting.view.fragment;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,12 +10,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bundletesting.R;
 import com.example.bundletesting.controller.TableAdapter;
 import com.example.bundletesting.model.Table;
+import com.example.bundletesting.view.TableAddedFood;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sa90.materialarcmenu.ArcMenu;
@@ -26,11 +30,10 @@ public class TableFragment extends Fragment {
     private RecyclerView recyclerViewTable;
     private TableAdapter tableAdapter;
     private ArcMenu arcMenu;
+
+    private FragmentActivity myContext;
 //    private FloatingActionButton btnFloating;
 
-//    private RecyclerView recyclerViewCoffee;
-//    private CoffeeAdapter coffeeAdapter;
-//    private Coffee coffee;
 
     @Nullable
     @Override
@@ -70,25 +73,16 @@ public class TableFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        myContext=(FragmentActivity) activity;
+        super.onAttach(activity);
+    }
+
     //show bottom sheet
     private void clickOpenBottomSheetDialog(){
-        View view = getLayoutInflater().inflate(R.layout.bottom_sheet_table, null);
-
-//        recyclerViewCoffee = (RecyclerView) view.findViewById(R.id.rcv_coffee);
-//        coffeeAdapter = new CoffeeAdapter(this.getContext());
-//
-//        LinearLayoutManager linearLinearLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
-//        recyclerViewCoffee.setLayoutManager(linearLinearLayoutManager);
-//
-//        coffee = (Coffee) getIntent().getExtras().get("Coffee");
-//
-//        coffeeAdapter.setData(getListCoffee());
-//        recyclerViewCoffee.setAdapter(coffeeAdapter);
-
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this.getContext());
-        bottomSheetDialog.setContentView(view);
-
-        bottomSheetDialog.show();
+        TableAddedFood tableAddedFood = new TableAddedFood();
+        tableAddedFood.show(getParentFragmentManager(), tableAddedFood.getTag());
     }
 
     private List<Table> getListTable(){

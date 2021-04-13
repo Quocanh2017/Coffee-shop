@@ -79,6 +79,7 @@ public class ListCoffeeWAdd extends AppCompatActivity {
         coffee = (Coffee) getIntent().getExtras().get("Coffee");
 
         list.add(new CoffeeSelected(coffee.getResourceId(), coffee.getName(), coffee.getPrice()));
+
        return list;
     }
 

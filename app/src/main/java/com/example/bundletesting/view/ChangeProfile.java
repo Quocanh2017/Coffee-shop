@@ -40,7 +40,7 @@ public class ChangeProfile extends AppCompatActivity {
     }
 
     //request permission from user
-    private void requestPermission(){
+    private void requestPermission() {
         PermissionListener permissionlistener = new PermissionListener() {
             @Override
             public void onPermissionGranted() {
@@ -56,27 +56,31 @@ public class ChangeProfile extends AppCompatActivity {
         TedPermission.with(this)
                 .setPermissionListener(permissionlistener)
                 .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
-                .setPermissions(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
+                .setPermissions(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .check();
     }
 
-    private void openImagePicker(){
-//        TedBottomPicker.OnImageSelectedListener listener = new TedBottomPicker.OnImageSelectedListener(){
-//            @Override
-//            public void onImageSelected(Uri uri) {
-//                try {
-//                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+    private void openImagePicker() {
+        TedBottomPicker.OnImageSelectedListener listener = new TedBottomPicker.OnImageSelectedListener() {
+            @Override
+            public void onImageSelected(Uri uri) {
+//                try{
+//                    Uri bitmap = MediaStore.Images.Media.getContentUri(getContentResolver().toString(), uri);
 //                    imgPhoto.setImageBitmap(bitmap);
-//                } catch (IOException e) {
+//                }
+//                catch( IOException e) {
 //                    e.printStackTrace();
 //                }
-//            }
-//        };
+            }
+        };
+
+        TedBottomPicker.with(ChangeProfile.this)
+                .setOnImageSelectedListener(listener)
+                .show(listener);
+    }
 
 //        TedBottomPicker tedBottomPicker = new TedBottomPicker.Builder(ChangeProfile.this)
 //                .setOnImageSelectedListener(listener)
 //                .create();
 //        tedBottomPicker.show(getSupportFragmentManager());
     }
-
-}

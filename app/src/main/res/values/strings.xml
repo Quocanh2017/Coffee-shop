@@ -7,6 +7,8 @@
     <string name="action_coffee">Coffee</string>
     <string name="action_profile">Profile</string>
     <string name="action_notification">Notification</string>
+    <string name="action_change_cf">Change List Coffee</string>
+    <string name="actione_change_table">Change List Table</string>
     <string name="action_setting">Setting</string>
     <string name="action_logout">Logout</string>
     <string name="nav_header_desc">Navigation header</string>

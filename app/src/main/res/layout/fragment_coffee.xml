@@ -30,38 +30,38 @@
         android:layout_marginBottom="10dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    <com.sa90.materialarcmenu.ArcMenu
-        android:id="@+id/arc_menu_cf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:menu_scr="@android:drawable/ic_menu_add"
-        app:menu_color="#FF0000"
-        app:menu_open="arc_left"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="8dp">
+<!--    <com.sa90.materialarcmenu.ArcMenu-->
+<!--        android:id="@+id/arc_menu_cf"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:menu_scr="@android:drawable/ic_menu_add"-->
+<!--        app:menu_color="#FF0000"-->
+<!--        app:menu_open="arc_left"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_margin="8dp">-->
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btn_floating_insert_cf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_edit_24"
-            app:backgroundTint="#FF0000"/>
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/btn_floating_insert_cf"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/ic_baseline_edit_24"-->
+<!--            app:backgroundTint="#FF0000"/>-->
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btn_floating_update_cf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_update_24"
-            app:backgroundTint="#FF0000"/>
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/btn_floating_update_cf"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/ic_baseline_update_24"-->
+<!--            app:backgroundTint="#FF0000"/>-->
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btn_floating_delete_cf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_delete_24"
-            app:backgroundTint="#FF0000"/>
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/btn_floating_delete_cf"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/ic_baseline_delete_24"-->
+<!--            app:backgroundTint="#FF0000"/>-->
 
-    </com.sa90.materialarcmenu.ArcMenu>
+<!--    </com.sa90.materialarcmenu.ArcMenu>-->
 
 </RelativeLayout>

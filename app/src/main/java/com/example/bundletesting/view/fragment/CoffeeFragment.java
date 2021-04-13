@@ -48,9 +48,9 @@ public class CoffeeFragment extends Fragment {
     private RecyclerView recyclerViewCoffee;
     private CoffeeAdapter coffeeAdapter;
 
-    private FloatingActionButton btnFloatingAdd;
-    private FloatingActionButton btnFloatingEdit;
-    private FloatingActionButton btnFloatingDelete;
+//    private FloatingActionButton btnFloatingAdd;
+//    private FloatingActionButton btnFloatingEdit;
+//    private FloatingActionButton btnFloatingDelete;
 
     private EditText addCoffeeName;
     private EditText addCoffeeDescription;
@@ -62,7 +62,7 @@ public class CoffeeFragment extends Fragment {
 
     List<Coffee> selectedList = new ArrayList<>();
 
-    private ArcMenu arcMenu;
+//    private ArcMenu arcMenu;
     MaterialToolbar toolbar;
 
     private static final int MY_REQUES_CODE = 10;
@@ -79,7 +79,7 @@ public class CoffeeFragment extends Fragment {
         addImage = view.findViewById(R.id.cf_img_add);
 
         recyclerViewCoffee = (RecyclerView) view.findViewById(R.id.rcv_coffee);
-        arcMenu = view.findViewById(R.id.arc_menu_cf);
+//        arcMenu = view.findViewById(R.id.arc_menu_cf);
 
         coffeeAdapter = new CoffeeAdapter(new CoffeeAdapter.IClickItemCoffee(){
             @Override
@@ -90,16 +90,16 @@ public class CoffeeFragment extends Fragment {
         });
 
         //floating button add to recyclerview
-        btnFloatingAdd = view.findViewById(R.id.btn_floating_insert_cf);
-        btnFloatingAdd.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                openAddDialog(Gravity.CENTER);
-            }
-        });
-
-        btnFloatingEdit = view.findViewById(R.id.btn_floating_update_cf);
-        btnFloatingDelete = view.findViewById(R.id.btn_floating_delete_cf);
+//        btnFloatingAdd = view.findViewById(R.id.btn_floating_insert_cf);
+//        btnFloatingAdd.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                openAddDialog(Gravity.CENTER);
+//            }
+//        });
+//
+//        btnFloatingEdit = view.findViewById(R.id.btn_floating_update_cf);
+//        btnFloatingDelete = view.findViewById(R.id.btn_floating_delete_cf);
 
         toolbar = view.findViewById(R.id.fragment_coffee_tool_bar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -133,18 +133,18 @@ public class CoffeeFragment extends Fragment {
         coffeeAdapter.setData(getListCoffee());
         recyclerViewCoffee.setAdapter(coffeeAdapter);
 
-        recyclerViewCoffee.addOnScrollListener(new RecyclerView.OnScrollListener(){
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                if(dy > 0){
-                    arcMenu.setVisibility(View.GONE);
-                }
-                else{
-                    arcMenu.setVisibility(View.VISIBLE);
-                }
-                super.onScrolled(recyclerView, dx, dy);
-            }
-        });
+//        recyclerViewCoffee.addOnScrollListener(new RecyclerView.OnScrollListener(){
+//            @Override
+//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+//                if(dy > 0){
+//                    arcMenu.setVisibility(View.GONE);
+//                }
+//                else{
+//                    arcMenu.setVisibility(View.VISIBLE);
+//                }
+//                super.onScrolled(recyclerView, dx, dy);
+//            }
+//        });
 
 //        btnAddCoffee.setOnClickListener(new View.OnClickListener(){
 //            @Override

@@ -10,9 +10,14 @@
             android:title="@string/action_profile" />
 
         <item
-            android:id="@+id/action_noti"
-            android:icon="@drawable/baseline_circle_notifications_white_24"
-            android:title="@string/action_notification" />
+            android:id="@+id/action_change_cf"
+            android:icon="@drawable/baseline_local_cafe_white_24"
+            android:title="@string/actione_change_table" />
+
+        <item
+            android:id="@+id/action_change_table"
+            android:icon="@drawable/round_deck_white_24"
+            android:title="@string/action_change_cf" />
 
         <item
             android:id="@+id/action_setting"

@@ -29,7 +29,7 @@ public class TableFragment extends Fragment {
 
     private RecyclerView recyclerViewTable;
     private TableAdapter tableAdapter;
-    private ArcMenu arcMenu;
+//    private ArcMenu arcMenu;
 
     private FragmentActivity myContext;
 //    private FloatingActionButton btnFloating;
@@ -42,7 +42,7 @@ public class TableFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_table, container, false);
 
         recyclerViewTable = (RecyclerView) view.findViewById(R.id.crv_table);
-        arcMenu = view.findViewById(R.id.arc_menu_tb);
+//        arcMenu = view.findViewById(R.id.arc_menu_tb);
 
         tableAdapter = new TableAdapter(new TableAdapter.IClickItemTable(){
             @Override
@@ -57,18 +57,18 @@ public class TableFragment extends Fragment {
         tableAdapter.setData(getListTable());
         recyclerViewTable.setAdapter(tableAdapter);
 
-        recyclerViewTable.addOnScrollListener(new RecyclerView.OnScrollListener(){
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                if(dy > 0){
-                    arcMenu.setVisibility(View.GONE);
-                }
-                else{
-                    arcMenu.setVisibility(View.VISIBLE);
-                }
-                super.onScrolled(recyclerView, dx, dy);
-            }
-        });
+//        recyclerViewTable.addOnScrollListener(new RecyclerView.OnScrollListener(){
+//            @Override
+//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+//                if(dy > 0){
+//                    arcMenu.setVisibility(View.GONE);
+//                }
+//                else{
+//                    arcMenu.setVisibility(View.VISIBLE);
+//                }
+//                super.onScrolled(recyclerView, dx, dy);
+//            }
+//        });
 
         return view;
     }

@@ -1,5 +1,6 @@
 package com.example.bundletesting.model;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -10,13 +11,22 @@ import java.io.Serializable;
 public class User implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
-
+    @ColumnInfo(name = "userName")
     private String userName;
+    @ColumnInfo(name = "account")
     private String account;
+    @ColumnInfo(name = "password")
     private String password;
+    @ColumnInfo(name = "resourceId")
     private int resourceId;
+    @ColumnInfo(name = "address")
     private String address;
 
+
+    public User() {
+    }
+
+    @Ignore
     public User(String userName, String account, String password, int resourceId, String address) {
         this.userName = userName;
         this.account = account;
@@ -24,6 +34,8 @@ public class User implements Serializable {
         this.resourceId = resourceId;
         this.address = address;
     }
+
+    @Ignore
     public User(String userName, String account, String password, String address) {
         this.userName = userName;
         this.account = account;

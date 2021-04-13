@@ -24,16 +24,8 @@
 <!--        app:menu_scr="@android:drawable/ic_menu_add"-->
 <!--        app:menu_color="#FF0000"-->
 <!--        app:menu_open="arc_left"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_alignParentEnd="true"-->
-<!--        android:layout_margin="8dp">-->
 
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--            android:id="@+id/btn_floating_insert_tb"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/ic_baseline_edit_24"-->
-<!--            app:backgroundTint="#FF0000"/>-->
+<!--        android:layout_margin="8dp">-->
 
 <!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
 <!--            android:id="@+id/btn_floating_update_tb"-->

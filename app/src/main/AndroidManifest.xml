@@ -20,6 +20,7 @@
         <activity android:name=".view.Login" />
         <activity android:name=".view.SignUp" />
         <activity android:name=".view.ChangeProfile"/>
+        <activity android:name=".view.UpdateTable"/>
         <activity
             android:name=".view.HomePage"
             android:theme="@style/Theme.BundleTesting.NoActionBar" />

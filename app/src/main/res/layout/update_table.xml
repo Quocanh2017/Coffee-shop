@@ -7,7 +7,7 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/edit_table"
+        android:id="@+id/edit_table_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
@@ -16,19 +16,13 @@
         android:hint="Add table name"/>
 
     <Button
-        android:id="@+id/button_add_table"
+        android:id="@+id/button_update_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:layout_marginTop="20dp"
         android:textSize="16sp"
         android:textColor="@color/white"
-        android:text="Add table"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_change_table"
-        android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_height="match_parent"/>
+        android:text="Update table"/>
 
 </LinearLayout>

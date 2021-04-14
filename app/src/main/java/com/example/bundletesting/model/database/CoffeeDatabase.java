@@ -6,11 +6,12 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.bundletesting.model.ChangeTable;
 import com.example.bundletesting.model.Coffee;
 import com.example.bundletesting.model.Table;
 import com.example.bundletesting.model.User;
 
-@Database(entities ={Coffee.class, User.class, Table.class}, version = 1,exportSchema = false)
+@Database(entities ={Coffee.class, User.class, ChangeTable.class}, version = 1,exportSchema = false)
 public abstract class CoffeeDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "coffee.db";
     private static CoffeeDatabase instance;
@@ -27,5 +28,7 @@ public abstract class CoffeeDatabase extends RoomDatabase {
 
     public abstract UserDAO userDao();
 
-    public abstract TableDAO tableDAO();
+//    public abstract TableDAO tableDAO();
+
+    public abstract ChangeTableDAO changeTableDAO();
 }

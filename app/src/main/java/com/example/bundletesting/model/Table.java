@@ -3,9 +3,9 @@ package com.example.bundletesting.model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "table")
+//@Entity(tableName = "table")
 public class Table {
-    @PrimaryKey(autoGenerate = true)
+//    @PrimaryKey(autoGenerate = true)
     private int id;
 
     private int resourceImage;

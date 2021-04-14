@@ -1,6 +1,8 @@
 package com.example.bundletesting.view.fragment;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -22,9 +24,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bundletesting.R;
+import com.example.bundletesting.controller.ChangeTableAdapter;
 import com.example.bundletesting.controller.TableAdapter;
+import com.example.bundletesting.model.ChangeTable;
 import com.example.bundletesting.model.Table;
 import com.example.bundletesting.model.database.CoffeeDatabase;
+import com.example.bundletesting.view.UpdateTable;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -32,78 +37,96 @@ import java.util.List;
 
 public class ChangeTableFragment extends Fragment {
 
-    private FloatingActionButton btnFloatingAdd;
+    private static final int REQUEST_CODE = 10;
+    private EditText editTextName;
     private Button button;
-    private EditText editTable;
-    private RecyclerView rcvTable;
-    private TableAdapter tableAdapter;
-    private List<Table> listTable;
+    private RecyclerView recyclerView;
+
+    private ChangeTableAdapter changeTableAdapter;
+    private List<ChangeTable> list;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_change_table, container, false);
-//        btnFloatingAdd = view.findViewById(R.id.btn_floating_insert_tb);
-//        btnFloatingAdd.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                openAddDialog(Gravity.CENTER);
-//            }
-//        });
-//
-//        editTable = view.findViewById(R.id.add_tb_name);
-//        button = view.findViewById(R.id.btn_add_table);
-//        rcvTable = view.findViewById(R.id.rcv_change_table);
-//
-//        tableAdapter = new TableAdapter(this.getContext());
-//        listTable = new ArrayList<>();
-//        tableAdapter.setData(listTable);
-//
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
-//        rcvTable.setLayoutManager(linearLayoutManager);
-//        rcvTable.setAdapter(tableAdapter);
-//
-//        button.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                addTable();
-//            }
-//        });
+
+        editTextName = view.findViewById(R.id.edit_table);
+        button = view.findViewById(R.id.button_add_table);
+        recyclerView = view.findViewById(R.id.rcv_change_table);
+
+        changeTableAdapter = new ChangeTableAdapter(new ChangeTableAdapter.IClickItemTable() {
+            @Override
+            public void updateTable(ChangeTable changeTable) {
+                clickUpdateTable(changeTable);
+            }
+        });
+        list = new ArrayList<>();
+        changeTableAdapter.setData(list);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        recyclerView.setAdapter(changeTableAdapter);
+
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                addTable();
+            }
+        });
+
+        loadData();
 
         return view;
     }
 
+    private void clickUpdateTable(ChangeTable changeTable){
+        Intent intent = new Intent(this.getContext(), UpdateTable.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("change_table",changeTable);
+        intent.putExtras(bundle);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
+            loadData();
+        }
+    }
+
     private void addTable() {
-        String tableName = editTable.getText().toString().trim();
-        if(TextUtils.isEmpty(tableName)){
+        String sTableName = editTextName.getText().toString().trim();
+        if(TextUtils.isEmpty(sTableName)){
             return;
         }
-        Table table = new Table(R.drawable.tabod, tableName);
-        CoffeeDatabase.getInstance(this.getContext()).tableDAO().insertTable(table);
-        Toast.makeText(this.getContext(),"add table is successfully",Toast.LENGTH_SHORT).show();
+        ChangeTable changeTable = new ChangeTable(R.drawable.tabod, sTableName);
 
-        editTable.setText("");
-    }
-
-    private void openAddDialog(int gravity){
-        //open dialog
-        final Dialog dialog = new Dialog(this.getContext());
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.layout_dialog_add_table);
-
-        Window window = dialog.getWindow();
-        if(window == null){
+        if(isTableExist(changeTable)){
+            Toast.makeText(this.getContext(),"Add table not successfully", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        CoffeeDatabase.getInstance(this.getContext()).changeTableDAO().insertChangeTable(changeTable);
+        Toast.makeText(this.getContext(),"Add table successfully", Toast.LENGTH_SHORT).show();
 
-        WindowManager.LayoutParams windowAttribute = window.getAttributes();
-        windowAttribute.gravity = gravity;
-        window.setAttributes(windowAttribute);
+        editTextName.setText("");
 
+        loadData();
 
-        dialog.show();
     }
+
+    private void loadData(){
+        //get list table change from room db
+        list = CoffeeDatabase.getInstance(this.getContext()).changeTableDAO().getListChangeTable();
+        changeTableAdapter.setData(list);
+    }
+
+    public boolean isTableExist(ChangeTable changeTable){
+        List<ChangeTable> listTable = CoffeeDatabase.getInstance(this.getContext()).changeTableDAO().checkTable(changeTable.getName());
+        return listTable != null && !listTable.isEmpty();
+    }
+
 }

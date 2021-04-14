@@ -3,14 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    android:background="@color/yellow">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <TextView
+
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Fragment Change coffee"
-        android:textSize="20dp"
-        android:layout_margin="30dp"/>
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:hint="Add table name"/>
+
+
+
 
 </LinearLayout>

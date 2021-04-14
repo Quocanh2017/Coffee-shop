@@ -18,7 +18,7 @@ public interface ChangeTableDAO {
     @Query("Select * from changetable")
     List<ChangeTable> getListChangeTable();
 
-    @Query("Select * from changetable where name =: name")
+    @Query("Select * from changetable where name = :name")
     List<ChangeTable> checkTable(String name);
 
     @Update

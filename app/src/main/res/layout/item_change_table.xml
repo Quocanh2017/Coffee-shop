@@ -43,6 +43,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:text="Update"
+        android:text="delete"
         android:background="@android:color/darker_gray"/>
 </RelativeLayout>

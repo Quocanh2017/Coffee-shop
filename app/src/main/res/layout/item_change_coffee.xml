@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:layout_toStartOf="@+id/btn_update_table"
+        android:layout_marginEnd="20dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/img_change_coffee"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/cafedenda"/>
+            <TextView
+                android:id="@+id/text_price_coffee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:text="25000NVD"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/text_name_coffee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Den da"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
+        <TextView
+            android:id="@+id/text_des_coffee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text= "description coffee 1"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_update_coffee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="5dp"
+        android:text="Update"
+        android:background="@android:color/darker_gray"/>
+    <Button
+        android:id="@+id/btn_delete_coffee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="80dp"
+        android:text="Delete"
+        android:background="@android:color/darker_gray"/>
+</RelativeLayout>

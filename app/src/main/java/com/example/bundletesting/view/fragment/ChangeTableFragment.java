@@ -1,7 +1,10 @@
 package com.example.bundletesting.view.fragment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -59,6 +62,11 @@ public class ChangeTableFragment extends Fragment {
             public void updateTable(ChangeTable changeTable) {
                 clickUpdateTable(changeTable);
             }
+
+            @Override
+            public void deleteTable(ChangeTable changeTable) {
+                clickDeleteTable(changeTable);
+            }
         });
         list = new ArrayList<>();
         changeTableAdapter.setData(list);
@@ -86,6 +94,25 @@ public class ChangeTableFragment extends Fragment {
         bundle.putSerializable("change_table",changeTable);
         intent.putExtras(bundle);
         startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    private void clickDeleteTable(final ChangeTable changeTable) {
+        new AlertDialog.Builder(this.getContext())
+                .setTitle("Confirm delete table")
+                .setMessage("Are you sure")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Delete table
+                        CoffeeDatabase.getInstance(ChangeTableFragment.this.getContext()).changeTableDAO().deleteTable(changeTable);
+                        Toast.makeText(ChangeTableFragment.this.getContext(),"Delete table successfully", Toast.LENGTH_SHORT).show();
+
+                        loadData();
+                    }
+                })
+                .setNegativeButton("Canel", null)
+                .show();
+
     }
 
     @Override

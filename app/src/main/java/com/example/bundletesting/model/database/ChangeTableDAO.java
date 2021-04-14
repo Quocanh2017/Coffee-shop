@@ -1,6 +1,7 @@
 package com.example.bundletesting.model.database;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -22,4 +23,7 @@ public interface ChangeTableDAO {
 
     @Update
     void updateTable(ChangeTable changeTable);
+
+    @Delete
+    void deleteTable(ChangeTable changeTable);
 }

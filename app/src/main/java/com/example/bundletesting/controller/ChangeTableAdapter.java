@@ -22,6 +22,8 @@ public class ChangeTableAdapter extends RecyclerView.Adapter<ChangeTableAdapter.
 
     public interface IClickItemTable{
         public void updateTable(ChangeTable changeTable);
+
+        public void deleteTable(ChangeTable changeTable);
     }
 
     public ChangeTableAdapter(IClickItemTable iClickItemTable) {
@@ -54,6 +56,13 @@ public class ChangeTableAdapter extends RecyclerView.Adapter<ChangeTableAdapter.
                 iClickItemTable.updateTable(changeTable);
             }
         });
+        holder.btnButtonDelete.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                iClickItemTable.deleteTable(changeTable);
+            }
+        });
     }
 
     @Override
@@ -69,12 +78,14 @@ public class ChangeTableAdapter extends RecyclerView.Adapter<ChangeTableAdapter.
         private ImageView image;
         private TextView tvName;
         private Button btnButton;
+        private Button btnButtonDelete;
 
         public ChangeTableViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.img_change_table);
             tvName = itemView.findViewById(R.id.text_change_table);
             btnButton = itemView.findViewById(R.id.btn_update_table);
+            btnButtonDelete = itemView.findViewById(R.id.btn_delete_table);
         }
     }
 }

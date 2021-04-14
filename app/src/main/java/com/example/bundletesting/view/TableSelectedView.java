@@ -24,6 +24,7 @@ public class TableSelectedView  extends BottomSheetDialogFragment {
 
     private Button button;
     private TableSelectedAdapter.IClickItemSelectTable iClick;
+    public List<Integer> a = new ArrayList<>();
 
     public TableSelectedView(TableSelectedAdapter.IClickItemSelectTable iClick) {
         this.iClick = iClick;
@@ -45,6 +46,7 @@ public class TableSelectedView  extends BottomSheetDialogFragment {
             @Override
             public void SelectedTableItem(TableSelected tableSelected) {
                 iClick.SelectedTableItem(tableSelected);
+//                tableSelectedAdapter.getItemId(tableSelected);
             }
         });
         recyclerView.setAdapter(tableSelectedAdapter);

@@ -75,6 +75,8 @@ public class ListCoffeeWAdd extends AppCompatActivity {
                 Log.i("click",tableSelected.getNumberTable().toString());
             }
         });
+        //cho nay
+        tableSelectedView.a = new ArrayList<>();
         tableSelectedView.show(getSupportFragmentManager(), tableSelectedView.getTag());
     }
 

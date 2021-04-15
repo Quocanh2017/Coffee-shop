@@ -41,7 +41,9 @@ public class TableAddedFood extends BottomSheetDialogFragment {
 
     private List<HoldCoffee> listAdd;
 
-    private List<Coffee> list;
+    private Button btnPayment;
+
+    private List<Coffee> list = new ArrayList<>();
     private Table table;
 
     private View view;
@@ -97,9 +99,19 @@ public class TableAddedFood extends BottomSheetDialogFragment {
 //        }
 //        list = listCoffeeWAdd.getSelectedList();
 
+//        listAdd = CoffeeDatabase.getInstance(TableAddedFood.this.getContext()).holdCoffeeDAO().getListHoldCoffeeAdd(table.getNumberTable());
+//        if(listAdd != null){
+//            list = CoffeeDatabase.getInstance(TableAddedFood.this.getContext()).coffeeDAO().getListCoffeeID(listAdd.get(0).getId());
+//        }
         listAdd = CoffeeDatabase.getInstance(TableAddedFood.this.getContext()).holdCoffeeDAO().getListHoldCoffeeAdd(table.getNumberTable());
         if(listAdd != null){
-            list = CoffeeDatabase.getInstance(TableAddedFood.this.getContext()).coffeeDAO().getListCoffeeID(listAdd.get(0).getId());
+            for(int i = 0; i<listAdd.size(); i++){
+                int x = listAdd.get(i).getResourceID();
+                String y = listAdd.get(i).getNameCf();
+                String z = listAdd.get(i).getPriceCf();
+
+                list.add(new Coffee(x,y,z));
+            }
         }
         coffeeSelectedAdapter.setData(list);
 
@@ -112,6 +124,7 @@ public class TableAddedFood extends BottomSheetDialogFragment {
                 y = y + Double.parseDouble(x[0]);
                 Arrays.fill(x, null);
             }
+            tvPrice.setText(String.valueOf(y) + " VND");
         }
         else{
             tvPrice.setText("0 VND");
@@ -119,6 +132,15 @@ public class TableAddedFood extends BottomSheetDialogFragment {
 //        tvPrice.setText(String.valueOf(y) + " VND");
 
         recyclerViewCoffeeSelected.setAdapter(coffeeSelectedAdapter);
+
+        btnPayment = view.findViewById(R.id.btn_payment_ok);
+        btnPayment.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                CoffeeDatabase.getInstance(TableAddedFood.this.getContext()).holdCoffeeDAO().deleteAllHoldCoffeeInTable(table.getNumberTable());
+                Toast.makeText(TableAddedFood.this.getContext(),table.getNumberTable()+" was payment",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return bottomSheetDialog;
     }

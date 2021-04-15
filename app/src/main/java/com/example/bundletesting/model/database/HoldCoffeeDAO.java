@@ -6,6 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.bundletesting.model.Coffee;
 import com.example.bundletesting.model.HoldCoffee;
 
 import java.util.List;
@@ -26,6 +27,9 @@ public interface HoldCoffeeDAO {
 
     @Query("DELETE FROM hold_coffee")
     void deleteAllHoldCoffee();
+
+    @Query("DELETE FROM hold_coffee WHERE nameTable = :nameTable")
+    void deleteAllHoldCoffeeInTable(String nameTable);
 
     @Query("SELECT * FROM hold_coffee where nameTable = :nameTable")
     List<HoldCoffee> getListHoldCoffeeAdd(String nameTable);

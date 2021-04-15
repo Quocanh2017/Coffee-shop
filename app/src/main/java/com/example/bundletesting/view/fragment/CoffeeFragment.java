@@ -90,7 +90,7 @@ public class CoffeeFragment extends Fragment {
         coffeeAdapter = new CoffeeAdapter(new CoffeeAdapter.IClickItemCoffee(){
             @Override
             public void addCoffee(Coffee coffee) {
-                Toast.makeText(getApplicationContext(), coffee.toString(), Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), coffee.getName().toString(), Toast.LENGTH_SHORT);
                 addCoffeeToTable(coffee);
             }
         });

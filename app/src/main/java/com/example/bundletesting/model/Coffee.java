@@ -26,10 +26,17 @@ public class Coffee implements Parcelable {
         this.price = price;
     }
 
+    @Ignore
     public Coffee(int resourceId, String name, String description, String price) {
         this.resourceId = resourceId;
         this.name = name;
         this.description = description;
+        this.price = price;
+    }
+
+    public Coffee(int resourceId, String name, String price) {
+        this.resourceId = resourceId;
+        this.name = name;
         this.price = price;
     }
 

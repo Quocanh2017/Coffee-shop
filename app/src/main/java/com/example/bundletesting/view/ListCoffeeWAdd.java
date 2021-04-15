@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.bundletesting.R;
 import com.example.bundletesting.controller.CoffeeSelectedAdapter;
 import com.example.bundletesting.controller.TableSelectedAdapter;
+import com.example.bundletesting.model.ChangeCoffee;
 import com.example.bundletesting.model.Coffee;
 import com.example.bundletesting.model.CoffeeSelected;
 import com.example.bundletesting.model.HoldCoffee;
@@ -46,7 +47,7 @@ public class ListCoffeeWAdd extends AppCompatActivity {
 
     private String nameTable;
 
-    ArrayList<Coffee> selectedList = new ArrayList<>();
+    List<Coffee> selectedList = new ArrayList<>();
     List<Coffee> list;
 
     private static final int MY_REQUES_CODE = 10;
@@ -104,16 +105,23 @@ public class ListCoffeeWAdd extends AppCompatActivity {
             @Override
             public void SelectedTableItem(TableSelected tableSelected) {
                 nameTable = tableSelected.getNumberTable();
-                for (Coffee coffee: list) {
-                    HoldCoffee holdCoffee = new HoldCoffee(coffee.getId(), nameTable);
-                    CoffeeDatabase.getInstance(ListCoffeeWAdd.this).holdCoffeeDAO().insertHoldCoffee(holdCoffee);
-                }
+//                for (Coffee coffee: list) {
+//                    HoldCoffee holdCoffee = new HoldCoffee(coffee.getId(), nameTable);
+//                    CoffeeDatabase.getInstance(ListCoffeeWAdd.this).holdCoffeeDAO().insertHoldCoffee(holdCoffee);
+//                }
 
                 Log.i("click",tableSelected.getNumberTable().toString());
 
-                selectedList = (ArrayList<Coffee>) list;
+//                selectedList = (ArrayList<Coffee>) list;
 
-                if (selectedList != null) {
+                if (list != null) {
+                    for(int i=0; i<list.size(); i++){
+                        int x = list.get(i).getResourceId();
+                        String y = list.get(i).getName();
+                        String z = list.get(i).getPrice();
+                        HoldCoffee holdCoffee = new HoldCoffee(nameTable,x ,y,z);
+                        CoffeeDatabase.getInstance(ListCoffeeWAdd.this).holdCoffeeDAO().insertHoldCoffee(holdCoffee);
+                    }
 //                    DataLocalTransfer.setCategory((Coffee) selectedList);
 //                    Toast.makeText(ListCoffeeWAdd.this,DataLocalTransfer.getCategory().getName(), Toast.LENGTH_SHORT).show();
 
@@ -137,7 +145,7 @@ public class ListCoffeeWAdd extends AppCompatActivity {
 //                    fragmentTransaction.addToBackStack(null);
 //                    fragmentTransaction.commit();
 
-                    Toast.makeText(ListCoffeeWAdd.this, "Add to table successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ListCoffeeWAdd.this, nameTable + " was add successfully", Toast.LENGTH_SHORT).show();
 
 //                    intent.putExtras(bundle);
 

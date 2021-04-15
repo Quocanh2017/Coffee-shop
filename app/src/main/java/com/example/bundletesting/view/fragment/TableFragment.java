@@ -52,7 +52,9 @@ public class TableFragment extends Fragment {
         tableAdapter = new TableAdapter(new TableAdapter.IClickItemTable(){
             @Override
             public void showBottomSheetView(Table table) {
-                clickOpenBottomSheetDialog();
+//                table.getNumberTable();
+                clickOpenBottomSheetDialog(table);
+
             }
         });
 
@@ -73,10 +75,12 @@ public class TableFragment extends Fragment {
     }
 
     //show bottom sheet
-    private void clickOpenBottomSheetDialog(){
+    private void clickOpenBottomSheetDialog(Table table){
 
-        TableAddedFood tableAddedFood = new TableAddedFood();
+        TableAddedFood tableAddedFood = new TableAddedFood(table);
         tableAddedFood.show(getParentFragmentManager(), tableAddedFood.getTag());
+
+//        CoffeeDatabase.getInstance();
 
 //        buttonOK = view.findViewById(R.id.btn_payment_ok);
 //        buttonCanel = view.findViewById(R.id.btn_payment_canel);

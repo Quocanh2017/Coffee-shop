@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
+        android:name=".myApplication"
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,6 +24,8 @@
         <activity android:name=".view.ChangeProfile"/>
         <activity android:name=".view.UpdateTable"/>
         <activity android:name=".view.UpdateCoffee"/>
+<!--        <activity android:name=".TableAddedFood"/>-->
+
         <activity
             android:name=".view.HomePage"
             android:theme="@style/Theme.BundleTesting.NoActionBar" />

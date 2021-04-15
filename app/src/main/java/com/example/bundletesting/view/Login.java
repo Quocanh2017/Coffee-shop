@@ -1,7 +1,9 @@
 package com.example.bundletesting.view;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.bundletesting.CheckInternetBroadcastReceiver;
 import com.example.bundletesting.Constants;
 import com.example.bundletesting.R;
 import com.example.bundletesting.SharePrefers;
@@ -36,6 +39,7 @@ public class Login extends AppCompatActivity {
 
     User user;
     UserDAO userDAO;
+    CheckInternetBroadcastReceiver checkInternet;
 
     private LoginButton mBtnLoginFacebook;
     private CallbackManager mCallbackManager;
@@ -48,6 +52,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+        checkInternet = new CheckInternetBroadcastReceiver();
 
         btn1 = (Button) findViewById(R.id.button1);
 
@@ -127,5 +133,20 @@ public class Login extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // dang ki br
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(checkInternet,intentFilter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // hu dang ki br
+        unregisterReceiver(checkInternet);
     }
 }

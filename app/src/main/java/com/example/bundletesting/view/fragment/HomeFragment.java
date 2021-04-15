@@ -57,6 +57,8 @@ public class HomeFragment extends Fragment {
 
         autoSlideImage();
 
+
+
         return root;
     }
 

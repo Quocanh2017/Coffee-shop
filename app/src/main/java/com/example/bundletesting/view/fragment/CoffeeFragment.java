@@ -157,6 +157,7 @@ public class CoffeeFragment extends Fragment {
 
     private void addCoffeeToTable(Coffee coffee){
         selectedList.add(coffee);
+//        CoffeeDatabase.getInstance(CoffeeFragment.this.getContext()).holdCoffeeDAO().insertHoldCoffee(coffee);
     }
 
     private List<Coffee> getListCoffee(){

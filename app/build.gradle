@@ -89,5 +89,12 @@ dependencies {
     //select image from device
     implementation 'gun0912.ted:tedbottompicker:2.0.1'
     implementation 'gun0912.ted:tedpermission:2.2.3'
+
+    //Gson google
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+//    implementation 'com.android.support:support-v4:'
+    //noinspection GradleCompatible
+//    implementation "com.android.support:support-core-utils:28.0.0"
 }
 

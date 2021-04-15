@@ -9,10 +9,11 @@ import androidx.room.RoomDatabase;
 import com.example.bundletesting.model.ChangeCoffee;
 import com.example.bundletesting.model.ChangeTable;
 import com.example.bundletesting.model.Coffee;
+import com.example.bundletesting.model.HoldCoffee;
 import com.example.bundletesting.model.Table;
 import com.example.bundletesting.model.User;
 
-@Database(entities ={Coffee.class, User.class, ChangeTable.class, ChangeCoffee.class}, version = 1,exportSchema = false)
+@Database(entities ={Coffee.class, User.class, ChangeTable.class, ChangeCoffee.class, HoldCoffee.class}, version = 1,exportSchema = false)
 public abstract class CoffeeDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "coffee.db";
     private static CoffeeDatabase instance;
@@ -21,6 +22,7 @@ public abstract class CoffeeDatabase extends RoomDatabase {
         if(instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(), CoffeeDatabase.class, DATABASE_NAME)
                     .allowMainThreadQueries()
+                    .fallbackToDestructiveMigration()
                     .build();
         }
         return instance;
@@ -34,4 +36,6 @@ public abstract class CoffeeDatabase extends RoomDatabase {
     public abstract ChangeTableDAO changeTableDAO();
 
     public abstract ChangeCoffeeDAO changeCoffeeDAO();
+
+    public abstract HoldCoffeeDAO holdCoffeeDAO();
 }

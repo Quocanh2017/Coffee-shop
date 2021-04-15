@@ -28,8 +28,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bundletesting.R;
 import com.example.bundletesting.controller.CoffeeAdapter;
+import com.example.bundletesting.model.ChangeCoffee;
+import com.example.bundletesting.model.ChangeTable;
 import com.example.bundletesting.model.Coffee;
 import com.example.bundletesting.model.CoffeeSelected;
+import com.example.bundletesting.model.Table;
 import com.example.bundletesting.model.database.CoffeeDatabase;
 import com.example.bundletesting.view.HomePage;
 import com.example.bundletesting.view.ListCoffeeWAdd;
@@ -39,6 +42,7 @@ import com.sa90.materialarcmenu.ArcMenu;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
@@ -59,6 +63,8 @@ public class CoffeeFragment extends Fragment {
     private Button btnAddCoffee;
 
     List<Coffee> list = new ArrayList<>();
+
+    List<Coffee> listAdd = new ArrayList<>();
 
     List<Coffee> selectedList = new ArrayList<>();
 
@@ -89,17 +95,6 @@ public class CoffeeFragment extends Fragment {
             }
         });
 
-        //floating button add to recyclerview
-//        btnFloatingAdd = view.findViewById(R.id.btn_floating_insert_cf);
-//        btnFloatingAdd.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                openAddDialog(Gravity.CENTER);
-//            }
-//        });
-//
-//        btnFloatingEdit = view.findViewById(R.id.btn_floating_update_cf);
-//        btnFloatingDelete = view.findViewById(R.id.btn_floating_delete_cf);
 
         toolbar = view.findViewById(R.id.fragment_coffee_tool_bar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -133,77 +128,32 @@ public class CoffeeFragment extends Fragment {
         coffeeAdapter.setData(getListCoffee());
         recyclerViewCoffee.setAdapter(coffeeAdapter);
 
-//        recyclerViewCoffee.addOnScrollListener(new RecyclerView.OnScrollListener(){
-//            @Override
-//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-//                if(dy > 0){
-//                    arcMenu.setVisibility(View.GONE);
-//                }
-//                else{
-//                    arcMenu.setVisibility(View.VISIBLE);
-//                }
-//                super.onScrolled(recyclerView, dx, dy);
-//            }
-//        });
-
-//        btnAddCoffee.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                addCoffee();
-//            }
-//        });
 
         return view;
     }
 
-    private void addCoffee() {
-        String strName = addCoffeeName.getText().toString().trim();
-        String strDes = addCoffeeDescription.getText().toString().trim();
-        String strPrice = addCoffeePrice.getText().toString().trim();
-        int resourceImage = addImage.getId();
 
-        if(TextUtils.isEmpty(strName) || TextUtils.isEmpty(strDes) || TextUtils.isEmpty(strPrice)){
-            return;
-        }
-        Coffee coffee = new Coffee(strName, strDes, strDes);
-        CoffeeDatabase.getInstance(this.getContext()).coffeeDAO().insertCoffee(coffee);
-        Toast.makeText(this.getContext(), "Add coffee successfully",Toast.LENGTH_SHORT).show();
-
-        addCoffeeName.setText("");
-        addCoffeeDescription.setText("");
-        addCoffeePrice.setText("");
-
-//        list.add(coffee);
-//        coffeeAdapter.setData(list);
-    }
-
-    //dialog add to recyclerview
-    private void openAddDialog(int gravity){
-        //open dialog
-        final Dialog dialog = new Dialog(this.getContext());
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.layout_dialog_add_coffee);
-
-        Window window = dialog.getWindow();
-        if(window == null){
-            return;
-        }
-
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        WindowManager.LayoutParams windowAttribute = window.getAttributes();
-        windowAttribute.gravity = gravity;
-        window.setAttributes(windowAttribute);
-
-//        if(Gravity.BOTTOM == gravity){
-//            dialog.setCancelable(true);
-//        }else{
-//            dialog.setCancelable(false);
+//    //dialog add to recyclerview
+//    private void openAddDialog(int gravity){
+//        //open dialog
+//        final Dialog dialog = new Dialog(this.getContext());
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setContentView(R.layout.layout_dialog_add_coffee);
+//
+//        Window window = dialog.getWindow();
+//        if(window == null){
+//            return;
 //        }
-
-        dialog.show();
-    }
+//
+//        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+//        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//
+//        WindowManager.LayoutParams windowAttribute = window.getAttributes();
+//        windowAttribute.gravity = gravity;
+//        window.setAttributes(windowAttribute);
+//
+//        dialog.show();
+//    }
 
     private void addCoffeeToTable(Coffee coffee){
         selectedList.add(coffee);
@@ -219,6 +169,13 @@ public class CoffeeFragment extends Fragment {
         list.add(new Coffee(R.drawable.cafedenda, "Đen đá", "Đen đá gần ngon", "25000 VND"));
         list.add(new Coffee(R.drawable.capuchino, "Capuchino", "Capuchino hơi ngon", "30000 VND"));
         list.add(new Coffee(R.drawable.cf, "Cà phê truyền thống", "cà phê thượng hạng", "25000 VND"));
+
+        List<ChangeCoffee> cList = CoffeeDatabase.getInstance(CoffeeFragment.this.getContext()).changeCoffeeDAO().getListChangeCoffee();
+        if (cList.size() > 0) {
+            for (int i = 0; i < cList.size(); i++) {
+                list.add(new Coffee(cList.get(i).getSourceId(), cList.get(i).getName(), cList.get(i).getDescription(), cList.get(i).getPrice()));
+            }
+        }
 
         return list;
     }

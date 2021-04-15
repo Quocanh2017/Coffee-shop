@@ -1,15 +1,18 @@
 package com.example.bundletesting.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bundletesting.R;
@@ -18,9 +21,14 @@ import com.example.bundletesting.controller.TableSelectedAdapter;
 import com.example.bundletesting.model.Coffee;
 import com.example.bundletesting.model.CoffeeSelected;
 import com.example.bundletesting.model.TableSelected;
+import com.example.bundletesting.view.fragment.TableFragment;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ListCoffeeWAdd extends AppCompatActivity {
@@ -28,11 +36,16 @@ public class ListCoffeeWAdd extends AppCompatActivity {
     private Coffee coffee;
     private Button button;
 
+    private TextView textView;
+    private TextView textView_time;
+
     private RecyclerView recyclerViewCoffeeSelected;
     private CoffeeSelectedAdapter coffeeSelectedAdapter;
 
-    private RecyclerView recyclerViewTableSelected;
-    private TableSelectedAdapter tableSelectedAdapter;
+    List<Coffee> selectedList = new ArrayList<>();
+    List<Coffee> list;
+
+    private static final int MY_REQUES_CODE = 10;
 
 
     @Override
@@ -46,7 +59,7 @@ public class ListCoffeeWAdd extends AppCompatActivity {
         LinearLayoutManager linearLinearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         recyclerViewCoffeeSelected.setLayoutManager(linearLinearLayoutManager);
 
-        List<Coffee> list = (ArrayList<Coffee>) getIntent().getExtras().getSerializable("Coffee");
+        list = (ArrayList<Coffee>) getIntent().getExtras().getSerializable("Coffee");
 
         coffeeSelectedAdapter.setData(list);
         recyclerViewCoffeeSelected.setAdapter(coffeeSelectedAdapter);
@@ -61,6 +74,20 @@ public class ListCoffeeWAdd extends AppCompatActivity {
 
         });
 
+        textView = findViewById(R.id.tv_total_price_od);
+        textView_time = findViewById(R.id.tv_time_oder_od);
+        Date currentTime = Calendar.getInstance().getTime();
+        textView_time.setText(String.valueOf(currentTime));
+        String[] x;
+        double y=0;
+        if(list.size() > 0){
+            for(int i = 0; i < list.size(); i++){
+                x = list.get(i).getPrice().split(" ");
+                y = y + Double.parseDouble(x[0]);
+                Arrays.fill(x, null);
+            }
+        }
+        textView.setText(String.valueOf(y) + " VND");
 
         Log.d("size", "onCreate: " + list.size());
 
@@ -72,22 +99,45 @@ public class ListCoffeeWAdd extends AppCompatActivity {
         TableSelectedView tableSelectedView = new TableSelectedView(new TableSelectedAdapter.IClickItemSelectTable() {
             @Override
             public void SelectedTableItem(TableSelected tableSelected) {
+
                 Log.i("click",tableSelected.getNumberTable().toString());
+
+                selectedList = list;
+
+//                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//                fragmentTransaction.replace(R.id.crv_order, new TableAddedFood());
+//                fragmentTransaction.commit();
+
+                if(selectedList.size() > 0){
+                    Toast.makeText(ListCoffeeWAdd.this,"Add to table successfully", Toast.LENGTH_SHORT).show();
+
+//                    TableAddedFood frag = new TableAddedFood();
+//                    Bundle bundle = new Bundle();
+//                    bundle.putSerializable("add_to_table", (Serializable) selectedList);
+//                    frag.setArguments(bundle);
+
+                }
+                Toast.makeText(ListCoffeeWAdd.this,"Add to table not successfully", Toast.LENGTH_SHORT).show();
+
+//                Intent intent = new Intent(ListCoffeeWAdd.this,TableFragment.class);
+//                startActivity(intent);
+
             }
         });
         //cho nay
-        tableSelectedView.a = new ArrayList<>();
+//        tableSelectedView.a = new ArrayList<>();
         tableSelectedView.show(getSupportFragmentManager(), tableSelectedView.getTag());
     }
 
+    public List<Coffee> getSelectedList() {
+        return selectedList;
+    }
+
     public List<CoffeeSelected> getListCoffeeSelected(){
-        List<CoffeeSelected> list = new ArrayList<>();
+        List<CoffeeSelected> listhh = new ArrayList<>();
 
-//        coffee = (Coffee) getIntent().getExtras().get("Coffee");
-//
-//        list.add(new CoffeeSelected(coffee.getResourceId(), coffee.getName(), coffee.getPrice()));
 
-        return list;
+        return listhh;
     }
 
 

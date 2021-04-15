@@ -7,7 +7,9 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.bundletesting.model.ChangeCoffee;
+import com.example.bundletesting.model.Coffee;
 
+import java.util.Collection;
 import java.util.List;
 
 @Dao

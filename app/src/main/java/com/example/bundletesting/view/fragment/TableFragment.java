@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bundletesting.R;
 import com.example.bundletesting.controller.TableAdapter;
+import com.example.bundletesting.model.ChangeTable;
 import com.example.bundletesting.model.Table;
+import com.example.bundletesting.model.database.CoffeeDatabase;
 import com.example.bundletesting.view.TableAddedFood;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -29,20 +33,21 @@ public class TableFragment extends Fragment {
 
     private RecyclerView recyclerViewTable;
     private TableAdapter tableAdapter;
-//    private ArcMenu arcMenu;
 
     private FragmentActivity myContext;
-//    private FloatingActionButton btnFloating;
 
+    private Button buttonOK;
+    private Button buttonCanel;
+
+    private View view;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_table, container, false);
+        view = inflater.inflate(R.layout.fragment_table, container, false);
 
         recyclerViewTable = (RecyclerView) view.findViewById(R.id.crv_table);
-//        arcMenu = view.findViewById(R.id.arc_menu_tb);
 
         tableAdapter = new TableAdapter(new TableAdapter.IClickItemTable(){
             @Override
@@ -57,18 +62,6 @@ public class TableFragment extends Fragment {
         tableAdapter.setData(getListTable());
         recyclerViewTable.setAdapter(tableAdapter);
 
-//        recyclerViewTable.addOnScrollListener(new RecyclerView.OnScrollListener(){
-//            @Override
-//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-//                if(dy > 0){
-//                    arcMenu.setVisibility(View.GONE);
-//                }
-//                else{
-//                    arcMenu.setVisibility(View.VISIBLE);
-//                }
-//                super.onScrolled(recyclerView, dx, dy);
-//            }
-//        });
 
         return view;
     }
@@ -81,8 +74,25 @@ public class TableFragment extends Fragment {
 
     //show bottom sheet
     private void clickOpenBottomSheetDialog(){
+
         TableAddedFood tableAddedFood = new TableAddedFood();
         tableAddedFood.show(getParentFragmentManager(), tableAddedFood.getTag());
+
+//        buttonOK = view.findViewById(R.id.btn_payment_ok);
+//        buttonCanel = view.findViewById(R.id.btn_payment_canel);
+//
+//        buttonCanel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                tableAddedFood.dismiss();
+//            }
+//        });
+//        buttonOK.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(TableFragment.this.getContext(),"Payment succesfully successfully", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private List<Table> getListTable(){
@@ -96,6 +106,13 @@ public class TableFragment extends Fragment {
         list.add(new Table(R.drawable.tabod, "table 6"));
         list.add(new Table(R.drawable.tabod, "table 7"));
         list.add(new Table(R.drawable.tabod, "table 8"));
+        ///
+        List<ChangeTable> cList = CoffeeDatabase.getInstance(TableFragment.this.getContext()).changeTableDAO().getListChangeTable();
+        if (cList.size() > 0) {
+            for (int i = 0; i < cList.size(); i++) {
+                list.add(new Table(cList.get(i).getSourceID(), cList.get(i).getName()));
+            }
+        }
 
         return list;
     }

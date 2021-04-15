@@ -21,18 +21,5 @@
         android:id="@+id/rcv_selected_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <Button
-            android:id="@+id/btn_add_all_item_to_table"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/black"
-            android:text="Add to table"
-            android:textColor="@color/white"
-            android:layout_alignParentEnd="true"
-            />
-    </RelativeLayout>
 
 </LinearLayout>

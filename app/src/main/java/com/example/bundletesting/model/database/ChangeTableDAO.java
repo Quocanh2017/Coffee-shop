@@ -7,7 +7,9 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.bundletesting.model.ChangeTable;
+import com.example.bundletesting.model.Table;
 
+import java.util.Collection;
 import java.util.List;
 
 @Dao

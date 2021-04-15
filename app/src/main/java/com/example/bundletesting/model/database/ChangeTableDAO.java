@@ -3,6 +3,7 @@ package com.example.bundletesting.model.database;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -14,7 +15,7 @@ import java.util.List;
 
 @Dao
 public interface ChangeTableDAO {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertChangeTable(ChangeTable changeTable);
 
     @Query("Select * from changetable")

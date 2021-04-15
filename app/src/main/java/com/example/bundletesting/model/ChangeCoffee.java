@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Entity
 public class ChangeCoffee implements Serializable {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     private int sourceId;

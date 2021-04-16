@@ -116,9 +116,6 @@ public class ListCoffeeWAdd extends AppCompatActivity {
             @Override
             public void SelectedTableItem(TableSelected tableSelected) {
                 nameTable = tableSelected.getNumberTable();
-//                for (Coffee coffee: list) {
-//                    HoldCoffee holdCoffee = new HoldCoffee(coffee.getId(), nameTable);
-//                    CoffeeDatabase.getInstance(ListCoffeeWAdd.this).holdCoffeeDAO().insertHoldCoffee(holdCoffee);
 //                }
 
                 Log.i("click",tableSelected.getNumberTable().toString());
@@ -133,28 +130,6 @@ public class ListCoffeeWAdd extends AppCompatActivity {
                         HoldCoffee holdCoffee = new HoldCoffee(nameTable,x ,y,z);
                         CoffeeDatabase.getInstance(ListCoffeeWAdd.this).holdCoffeeDAO().insertHoldCoffee(holdCoffee);
                     }
-//                    DataLocalTransfer.setCategory((Coffee) selectedList);
-//                    Toast.makeText(ListCoffeeWAdd.this,DataLocalTransfer.getCategory().getName(), Toast.LENGTH_SHORT).show();
-
-//                    Intent intent = new Intent(ListCoffeeWAdd.this, TableAddedFood.class);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putParcelableArrayList("add_to_table", (ArrayList<? extends Parcelable>) selectedList);
-
-//                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                    fragmentTransaction.replace(R.id.layout_hh, new TableAddedFood());
-//                    fragmentTransaction.commit();
-
-//                    Intent intent = new Intent(ListCoffeeWAdd.this, TableAddedFood.class);
-
-//                    Bundle bundle = new Bundle();
-//                    bundle.putParcelableArrayList("add_to_table", (ArrayList<? extends Parcelable>) selectedList);
-//                    Fragment fr = new TableAddedFood();
-//                    fr.setArguments(bundle);
-
-//                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//                    fragmentTransaction.replace(R.id.crv_order, fr);
-//                    fragmentTransaction.addToBackStack(null);
-//                    fragmentTransaction.commit();
 
                     Toast.makeText(ListCoffeeWAdd.this, nameTable + " was add successfully", Toast.LENGTH_SHORT).show();
 
@@ -163,25 +138,10 @@ public class ListCoffeeWAdd extends AppCompatActivity {
                     list.clear();
                     coffeeSelectedAdapter.setData(list);
                     coffeeSelectedAdapter.notifyDataSetChanged();
-
-
-//                    intent.putExtras(bundle);
-
-//                    startActivity(intent);
-
-//                    startActivityForResult(intent, MY_REQUES_CODE);
-
-//                    TableAddedFood frag = new TableAddedFood();
-//                    Bundle bundle = new Bundle();
-//                    bundle.putSerializable("add_to_table", (Serializable) selectedList);
-//                    frag.setArguments(bundle);
                 }
                 else {
                     Toast.makeText(ListCoffeeWAdd.this, "Add to table not successfully", Toast.LENGTH_SHORT).show();
                 }
-
-//                Intent intent = new Intent(ListCoffeeWAdd.this,TableFragment.class);
-//                startActivity(intent);
 
             }
         });
@@ -201,6 +161,4 @@ public class ListCoffeeWAdd extends AppCompatActivity {
 
         return listhh;
     }
-
-
 }

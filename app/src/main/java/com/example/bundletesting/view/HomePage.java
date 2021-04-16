@@ -76,11 +76,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         navigationView = findViewById(R.id.nav_view);
 
         AppBarConfiguration appBarConfig = new AppBarConfiguration.Builder(navController.getGraph()).setDrawerLayout(drawerLayout).build();
-        
 
-//        new AppBarConfiguration(toolbar).Builder()
-//        AppBarConfiguration appBarConfig = new AppBarConfiguration(Set.of(R.id.home_page), drawerLayout, navController);
-//        NavigationUI.setupActionBarWithNavController(this, navController,appBarConfig);
 
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfig);
         NavigationUI.setupWithNavController(binding.bottomNav, navController);

@@ -68,10 +68,10 @@ public class SignUp extends AppCompatActivity {
         String sPassword = edit3.getText().toString().trim();
         String sRetypePassword = edit4.getText().toString().trim();
 
-        if (TextUtils.isEmpty(sUserName) || TextUtils.isEmpty(sAccount) || TextUtils.isEmpty(sPassword)){
+        if (TextUtils.isEmpty(sUserName) || TextUtils.isEmpty(sAccount) || TextUtils.isEmpty(sPassword) || TextUtils.isEmpty(sRetypePassword)){
             return;
         }
-        User user = new User(sUserName, sAccount, sPassword);
+        User user = new User(sUserName, sAccount, sPassword, "Ha Noi");
         CoffeeDatabase.getInstance(this).userDao().insertUser(user);
         Toast.makeText(this, "Add user successfully", Toast.LENGTH_SHORT).show();
 
@@ -79,9 +79,5 @@ public class SignUp extends AppCompatActivity {
         edit2.setText("");
         edit3.setText("");
         edit4.setText("");
-    }
-
-    private void initUI(){
-
     }
 }

@@ -32,75 +32,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-//        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-//                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-//            //we are connected to a network
-//            connected = true;
-//
-//        }
-//        else
-//            connected = false;
-
-        // Connected to network
-
         Intent intentLogin = new Intent(MainActivity.this , Login.class);
         startActivity(intentLogin);
 
-//        ConnectivityManager connMgr =
-//                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-//        boolean isWifiConn = false;
-//        boolean isMobileConn = false;
-//        for (Network network : connMgr.getAllNetworks()) {
-//            NetworkInfo networkInfo = connMgr.getNetworkInfo(network);
-//            if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
-//                isWifiConn |= networkInfo.isConnected();
-//                System.out.println("hello");
-//            }
-//            if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
-//                isMobileConn |= networkInfo.isConnected();
-//                System.out.println("hi");
-//
-//            }
-//        }
-//        Log.d(DEBUG_TAG, "Wifi connected: " + isWifiConn);
-//        Log.d(DEBUG_TAG, "Mobile connected: " + isMobileConn);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
 
         myRef.setValue("Hello, World!");
-
-//        Activity context = new Activity();
-
-//        bt = (Button) findViewById(R.id.bt);
-//        bt1 = (Button) findViewById(R.id.bt_1);
-//        bt2 = (Button) findViewById(R.id.bt_2);
-//
-//        bt.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//
-//            }
-//        });
-//
-//
-//        bt1.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                Intent intentLogin = new Intent(MainActivity.this , SignUp.class);
-//                startActivity(intentLogin);
-//            }
-//        });
-//
-//        bt2.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                Intent intentLogin = new Intent(MainActivity.this , HomePage.class);
-//                startActivity(intentLogin);
-//            }
-//        });
-
     }
 
 }

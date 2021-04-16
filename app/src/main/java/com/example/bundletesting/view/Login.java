@@ -45,6 +45,7 @@ public class Login extends AppCompatActivity {
     private CallbackManager mCallbackManager;
     private static final String EMAIL = "email";
 
+    List<User> list = new ArrayList<>();
 
     int counter = 0;
 
@@ -80,12 +81,14 @@ public class Login extends AppCompatActivity {
                         SharedPreferences preferences = SharePrefers.getInstance(Login.this);
                         preferences.edit().putString(Constants.USER_NAME, userName).apply();
                         preferences.edit().putString(Constants.PASSWORD, pw).apply();
+
                         Intent intent = new Intent(Login.this, HomePage.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(getApplicationContext(), "Login fail", Toast.LENGTH_SHORT).show();
                         counter++;
-                        if (counter > 3) {
+                        if (counter > 5) {
+                            Toast.makeText(getApplicationContext(), "Login fail more than 5. restart your program", Toast.LENGTH_SHORT).show();
                             btn1.setEnabled(false);
                         }
                     }
@@ -122,7 +125,6 @@ public class Login extends AppCompatActivity {
     }
 
     private boolean getListUser(String account, String password) {
-        List<User> list = new ArrayList<>();
         list = CoffeeDatabase.getInstance(this).userDao().getListUser(account, password);
 //        Toast.makeText(getApplicationContext(), list.get(0).getUserName(), Toast.LENGTH_SHORT).show();
 

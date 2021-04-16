@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import com.example.bundletesting.R;
 import com.example.bundletesting.model.User;
@@ -61,7 +62,8 @@ public class ChangeProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addProfile();
-                updateProfile();
+//                updateProfile();
+                finish();
             }
         });
     }
@@ -76,19 +78,14 @@ public class ChangeProfile extends AppCompatActivity {
             return;
         }
 
-        User user = new User(sEditName, sEditAccount, sEditPassword, sEditAddress);
-        CoffeeDatabase.getInstance(this).userDao().insertUser(user);
+//        User user = new User(sEditName, sEditAccount, sEditPassword, sEditAddress);
+        CoffeeDatabase.getInstance(this).userDao().setListUser(sEditName, sEditAccount, sEditPassword, sEditAddress);
         Toast.makeText(this, "change profile successfully",Toast.LENGTH_SHORT).show();
 
         editName.setText("");
         editAccount.setText("");
         editPassword.setText("");
         editAddress.setText("");
-    }
-
-    private void updateProfile() {
-        Intent intent = new Intent(this, ProfileFragment.class);
-        startActivity(intent);
     }
 
     //request permission from user
@@ -130,9 +127,4 @@ public class ChangeProfile extends AppCompatActivity {
                 .setOnImageSelectedListener(listener)
                 .show(listener);
     }
-
-//        TedBottomPicker tedBottomPicker = new TedBottomPicker.Builder(ChangeProfile.this)
-//                .setOnImageSelectedListener(listener)
-//                .create();
-//        tedBottomPicker.show(getSupportFragmentManager());
     }

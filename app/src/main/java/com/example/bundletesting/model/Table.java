@@ -11,6 +11,10 @@ public class Table {
     private int resourceImage;
     private String numberTable;
 
+    public Table(String numberTable) {
+        this.numberTable = numberTable;
+    }
+
     public Table(int resourceImage, String numberTable) {
         this.resourceImage = resourceImage;
         this.numberTable = numberTable;

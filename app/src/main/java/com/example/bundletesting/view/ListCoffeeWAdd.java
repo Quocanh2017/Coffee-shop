@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.FragmentTransaction;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
@@ -34,6 +35,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 public class ListCoffeeWAdd extends AppCompatActivity {
 
     private Coffee coffee;
@@ -48,7 +51,7 @@ public class ListCoffeeWAdd extends AppCompatActivity {
     private String nameTable;
 
     List<Coffee> selectedList = new ArrayList<>();
-    List<Coffee> list;
+    List<Coffee> list = new ArrayList<>();
 
     private static final int MY_REQUES_CODE = 10;
 
@@ -58,13 +61,21 @@ public class ListCoffeeWAdd extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_coffee_w_add);
 
+        list = (ArrayList<Coffee>) getIntent().getExtras().getSerializable("Coffee");
+
         recyclerViewCoffeeSelected = (RecyclerView) findViewById(R.id.rcv_coffee_selected);
-        coffeeSelectedAdapter = new CoffeeSelectedAdapter(this);
+        coffeeSelectedAdapter = new CoffeeSelectedAdapter(new CoffeeSelectedAdapter.IClickItemCoffeeSelected() {
+            @Override
+            public void removeCoffeeSelected(Coffee coffeeSelected) {
+                Toast.makeText(ListCoffeeWAdd.this, "Coffee was remove", Toast.LENGTH_SHORT);
+                list.remove(coffeeSelected);
+                coffeeSelectedAdapter.setData(list);
+                coffeeSelectedAdapter.notifyDataSetChanged();
+            }
+        });
 
         LinearLayoutManager linearLinearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         recyclerViewCoffeeSelected.setLayoutManager(linearLinearLayoutManager);
-
-        list = (ArrayList<Coffee>) getIntent().getExtras().getSerializable("Coffee");
 
         coffeeSelectedAdapter.setData(list);
         recyclerViewCoffeeSelected.setAdapter(coffeeSelectedAdapter);
@@ -101,7 +112,7 @@ public class ListCoffeeWAdd extends AppCompatActivity {
     }
 
     public void clickOpenBottomSheetSelectTable() {
-        TableSelectedView tableSelectedView = new TableSelectedView(new TableSelectedAdapter.IClickItemSelectTable() {
+        final TableSelectedView tableSelectedView = new TableSelectedView(new TableSelectedAdapter.IClickItemSelectTable() {
             @Override
             public void SelectedTableItem(TableSelected tableSelected) {
                 nameTable = tableSelected.getNumberTable();
@@ -147,6 +158,13 @@ public class ListCoffeeWAdd extends AppCompatActivity {
 
                     Toast.makeText(ListCoffeeWAdd.this, nameTable + " was add successfully", Toast.LENGTH_SHORT).show();
 
+//                    tableSelectedView.dismiss();
+
+                    list.clear();
+                    coffeeSelectedAdapter.setData(list);
+                    coffeeSelectedAdapter.notifyDataSetChanged();
+
+
 //                    intent.putExtras(bundle);
 
 //                    startActivity(intent);
@@ -170,6 +188,7 @@ public class ListCoffeeWAdd extends AppCompatActivity {
         //cho nay
 //        tableSelectedView.a = new ArrayList<>();
         tableSelectedView.show(getSupportFragmentManager(), tableSelectedView.getTag());
+//        tableSelectedView.dismiss();
     }
 
     public List<Coffee> getSelectedList() {

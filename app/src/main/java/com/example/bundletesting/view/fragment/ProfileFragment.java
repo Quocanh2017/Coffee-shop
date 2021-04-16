@@ -31,6 +31,7 @@ public class ProfileFragment extends Fragment {
     private TextView edit3;
     private User user;
     List<User> list = new ArrayList<>();
+    List<User> listDb = new ArrayList<>();
 
     @Nullable
     @Override
@@ -51,11 +52,13 @@ public class ProfileFragment extends Fragment {
         });
 
         SharedPreferences preferences = SharePrefers.getInstance(getActivity());
-        list = getListUser(preferences.getString(Constants.USER_NAME, ""), preferences.getString(Constants.PASSWORD, ""));
-        if (list != null && !list.isEmpty()) {
-            edit1.setText(list.get(0).getUserName());
-            edit2.setText(list.get(0).getAccount());
-            edit3.setText(list.get(0).getAddress());
+//        list = getListUser(preferences.getString(Constants.USER_NAME, ""), preferences.getString(Constants.PASSWORD, ""));
+        listDb = CoffeeDatabase.getInstance(ProfileFragment.this.getContext()).userDao().getListUser(preferences.getString(Constants.USER_NAME, ""),preferences.getString(Constants.PASSWORD, ""));
+
+        if (listDb != null && !listDb.isEmpty()) {
+            edit1.setText(listDb.get(0).getUserName());
+            edit2.setText(listDb.get(0).getAccount());
+            edit3.setText(listDb.get(0).getAddress());
         }
 
         return view;

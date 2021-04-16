@@ -43,6 +43,12 @@ public class User implements Serializable {
         this.address = address;
     }
 
+    @Ignore
+    public User(String account, String password) {
+        this.account = account;
+        this.password = password;
+    }
+
     public int getResourceId() {
         return resourceId;
     }
@@ -96,4 +102,5 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

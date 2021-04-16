@@ -13,7 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bundletesting.R;
 import com.example.bundletesting.controller.TableSelectedAdapter;
+import com.example.bundletesting.model.ChangeTable;
+import com.example.bundletesting.model.Table;
 import com.example.bundletesting.model.TableSelected;
+import com.example.bundletesting.model.database.CoffeeDatabase;
+import com.example.bundletesting.view.fragment.TableFragment;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -65,6 +69,14 @@ public class TableSelectedView  extends BottomSheetDialogFragment {
         list.add(new TableSelected("table 6"));
         list.add(new TableSelected("table 7"));
         list.add(new TableSelected("table 8"));
+
+        List<ChangeTable> cList = CoffeeDatabase.getInstance(getActivity()).changeTableDAO().getListChangeTable();
+        if (cList.size() > 0) {
+            for (int i = 0; i < cList.size(); i++) {
+                list.add(new TableSelected(cList.get(i).getName()));
+            }
+        }
+
         return list;
     }
 }

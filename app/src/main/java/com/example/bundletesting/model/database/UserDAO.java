@@ -13,9 +13,12 @@ public interface UserDAO {
     @Insert
     void insertUser(User user);
 
-    @Query("select * from user where userName=:userName and password=:password")
-    List<User> getListUser(String userName, String password);
+    @Query("select * from user where account=:account and password=:password")
+    List<User> getListUser(String account, String password);
 
     @Query("select * from user")
     List<User> getListUser();
+
+    @Query("UPDATE user SET USERNAME = :userName, account = :account, password = :password, address = :address where username = :userName and password = :password")
+    void setListUser(String userName, String account, String password, String address);
 }

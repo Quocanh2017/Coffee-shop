@@ -52,10 +52,6 @@ public class CoffeeFragment extends Fragment {
     private RecyclerView recyclerViewCoffee;
     private CoffeeAdapter coffeeAdapter;
 
-//    private FloatingActionButton btnFloatingAdd;
-//    private FloatingActionButton btnFloatingEdit;
-//    private FloatingActionButton btnFloatingDelete;
-
     private EditText addCoffeeName;
     private EditText addCoffeeDescription;
     private EditText addCoffeePrice;
@@ -90,7 +86,7 @@ public class CoffeeFragment extends Fragment {
         coffeeAdapter = new CoffeeAdapter(new CoffeeAdapter.IClickItemCoffee(){
             @Override
             public void addCoffee(Coffee coffee) {
-                Toast.makeText(getApplicationContext(), coffee.getName().toString(), Toast.LENGTH_SHORT);
+                Toast.makeText(CoffeeFragment.this.getContext(), "Coffee  was added", Toast.LENGTH_SHORT);
                 addCoffeeToTable(coffee);
             }
         });
@@ -132,28 +128,6 @@ public class CoffeeFragment extends Fragment {
         return view;
     }
 
-
-//    //dialog add to recyclerview
-//    private void openAddDialog(int gravity){
-//        //open dialog
-//        final Dialog dialog = new Dialog(this.getContext());
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        dialog.setContentView(R.layout.layout_dialog_add_coffee);
-//
-//        Window window = dialog.getWindow();
-//        if(window == null){
-//            return;
-//        }
-//
-//        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-//        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//
-//        WindowManager.LayoutParams windowAttribute = window.getAttributes();
-//        windowAttribute.gravity = gravity;
-//        window.setAttributes(windowAttribute);
-//
-//        dialog.show();
-//    }
 
     private void addCoffeeToTable(Coffee coffee){
         selectedList.add(coffee);

@@ -21,17 +21,6 @@ public class DataLocalTransfer {
         }
         return instance;
     }
-    public static void setCategory(Coffee coffee){
-        Gson gson = new Gson();
-        String strSave = gson.toJson(coffee);
-        DataLocalTransfer.getInstance().sharePreference.putStringCategory(KEY_COFFEE, strSave);
-    }
-    public static Coffee getCategory(){
-        String strSave = DataLocalTransfer.getInstance().sharePreference.getStringCategory(KEY_COFFEE);
-        Gson gson = new Gson();
-        Coffee coffee = gson.fromJson(strSave, Coffee.class);
-        return coffee;
-    }
     public static void setInternetState(int state){
         DataLocalTransfer.getInstance().sharePreference.putIntInternetState(ID_INTERNET_STATE,state);
     }

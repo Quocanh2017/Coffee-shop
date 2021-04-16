@@ -136,7 +136,7 @@ public class ChangeCoffeeFragment extends Fragment {
         if(TextUtils.isEmpty(sCoffeeName) || TextUtils.isEmpty(sCoffeeDes) || TextUtils.isEmpty(sCoffeePrice)){
             return;
         }
-        ChangeCoffee changeCoffee = new ChangeCoffee(R.drawable.tabod, sCoffeeName, sCoffeeDes, sCoffeePrice);
+        ChangeCoffee changeCoffee = new ChangeCoffee(R.drawable.capuchino, sCoffeeName, sCoffeeDes, sCoffeePrice);
 
         if(isCoffeeExist(changeCoffee)){
             Toast.makeText(this.getContext(),"Add coffee not successfully", Toast.LENGTH_SHORT).show();

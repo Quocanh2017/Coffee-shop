@@ -72,37 +72,6 @@ public class TableAddedFood extends BottomSheetDialogFragment {
         LinearLayoutManager linearLinearLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
         recyclerViewCoffeeSelected.setLayoutManager(linearLinearLayoutManager);
 
-//        listAdd = (List<Coffee>) (Serializable) getArguments().getSerializable(GET_TO_TABLE);
-//        if(listAdd != null){
-//            list = listAdd;
-//        }
-
-//        listAdd = getArguments().getParcelableArrayList("add_to_table");
-
-//        list = listAdd;
-
-
-//        Intent intent = Intent.getIntent();
-//        list = (ArrayList<Coffee>) getArguments().getSerializable("add_to_table");
-//
-//        Bundle bundle = getActivity().getIntent().getExtras();
-//        if(bundle != null){
-//            listAdd = (List<Coffee>) bundle.get("add_to_coffee");
-//            list = listAdd;
-//            Toast.makeText(TableAddedFood.this.getContext(),"list " + list.get(0).getName(),Toast.LENGTH_SHORT).show();
-//
-//        }
-
-//        listAdd = (ArrayList<Coffee>) getArguments().getSerializable("add_to_table");
-//        if(listAdd.size() > 0){
-//            list = listAdd;
-//        }
-//        list = listCoffeeWAdd.getSelectedList();
-
-//        listAdd = CoffeeDatabase.getInstance(TableAddedFood.this.getContext()).holdCoffeeDAO().getListHoldCoffeeAdd(table.getNumberTable());
-//        if(listAdd != null){
-//            list = CoffeeDatabase.getInstance(TableAddedFood.this.getContext()).coffeeDAO().getListCoffeeID(listAdd.get(0).getId());
-//        }
         listAdd = CoffeeDatabase.getInstance(TableAddedFood.this.getContext()).holdCoffeeDAO().getListHoldCoffeeAdd(table.getNumberTable());
         if(listAdd != null){
             for(int i = 0; i<listAdd.size(); i++){
@@ -129,7 +98,6 @@ public class TableAddedFood extends BottomSheetDialogFragment {
         else{
             tvPrice.setText("0 VND");
         }
-//        tvPrice.setText(String.valueOf(y) + " VND");
 
         recyclerViewCoffeeSelected.setAdapter(coffeeSelectedAdapter);
 
@@ -137,11 +105,17 @@ public class TableAddedFood extends BottomSheetDialogFragment {
         btnPayment.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                CoffeeDatabase.getInstance(TableAddedFood.this.getContext()).holdCoffeeDAO().deleteAllHoldCoffeeInTable(table.getNumberTable());
-                Toast.makeText(TableAddedFood.this.getContext(),table.getNumberTable()+" was payment",Toast.LENGTH_SHORT).show();
+                if(list != null){
+                    CoffeeDatabase.getInstance(TableAddedFood.this.getContext()).holdCoffeeDAO().deleteAllHoldCoffeeInTable(table.getNumberTable());
+                    Toast.makeText(TableAddedFood.this.getContext(),table.getNumberTable()+" was payment",Toast.LENGTH_SHORT).show();
+                    dismiss();
+                }else{
+                    Toast.makeText(TableAddedFood.this.getContext(),table.getNumberTable()+" do not have food to payment",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         return bottomSheetDialog;
     }
+
 }

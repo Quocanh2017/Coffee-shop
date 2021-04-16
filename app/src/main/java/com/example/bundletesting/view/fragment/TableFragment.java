@@ -79,24 +79,6 @@ public class TableFragment extends Fragment {
 
         TableAddedFood tableAddedFood = new TableAddedFood(table);
         tableAddedFood.show(getParentFragmentManager(), tableAddedFood.getTag());
-
-//        CoffeeDatabase.getInstance();
-
-//        buttonOK = view.findViewById(R.id.btn_payment_ok);
-//        buttonCanel = view.findViewById(R.id.btn_payment_canel);
-//
-//        buttonCanel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                tableAddedFood.dismiss();
-//            }
-//        });
-//        buttonOK.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(TableFragment.this.getContext(),"Payment succesfully successfully", Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 
     private List<Table> getListTable(){

@@ -42,7 +42,7 @@
         android:layout_marginTop="20dp"
         android:textSize="16sp"
         android:textColor="@color/white"
-        android:text="Add table"/>
+        android:text="Add New Coffee"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_change_coffee"

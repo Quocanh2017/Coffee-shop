@@ -22,6 +22,16 @@ public class CoffeeSelectedAdapter extends RecyclerView.Adapter<CoffeeSelectedAd
     private List<Coffee> listCoffeeSelected;
     private Context context;
 
+    public interface IClickItemCoffeeSelected{
+        void removeCoffeeSelected(Coffee coffeeSelected);
+    }
+
+    private IClickItemCoffeeSelected iClickItem;
+
+    public CoffeeSelectedAdapter(IClickItemCoffeeSelected iClickItem) {
+        this.iClickItem = iClickItem;
+    }
+
     public CoffeeSelectedAdapter(Context context) {
         this.context = context;
     }
@@ -48,6 +58,13 @@ public class CoffeeSelectedAdapter extends RecyclerView.Adapter<CoffeeSelectedAd
         holder.imgCoffeeSelected.setImageResource(coffeeSelected.getResourceId());
         holder.tvCoffeeSelected.setText(coffeeSelected.getName());
         holder.tvCoffeePriceSelected.setText(coffeeSelected.getPrice());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                iClickItem.removeCoffeeSelected(coffeeSelected);
+            }
+        });
     }
 
     @Override

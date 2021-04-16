@@ -9,12 +9,8 @@ import androidx.room.PrimaryKey;
 
 import static androidx.room.ForeignKey.CASCADE;
 
-//@Entity (tableName = "hold_coffee",
-//foreignKeys = @ForeignKey(onDelete = CASCADE, entity = Coffee.class, parentColumns = "id", childColumns ="id"), indices = @Index(value = "id"))
 @Entity(tableName = "hold_coffee")
 public class HoldCoffee {
-
-//    private int id;
 
     @PrimaryKey(autoGenerate = true)
     private int idHold;
@@ -26,14 +22,6 @@ public class HoldCoffee {
     private String nameCf;
     @ColumnInfo(name = "priceCf")
     private String priceCf;
-
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
 
     public String getNameTable() {
         return nameTable;

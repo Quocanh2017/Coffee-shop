@@ -19,7 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bundletesting.R;
 import com.example.bundletesting.controller.TableAdapter;
 import com.example.bundletesting.model.ChangeTable;
+import com.example.bundletesting.model.HoldCoffee;
 import com.example.bundletesting.model.Table;
+import com.example.bundletesting.model.TableSelected;
 import com.example.bundletesting.model.database.CoffeeDatabase;
 import com.example.bundletesting.view.TableAddedFood;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -36,8 +38,15 @@ public class TableFragment extends Fragment {
 
     private FragmentActivity myContext;
 
+    private List<HoldCoffee> listAdd = new ArrayList<>();
+
+
+    private Table tablehh;
+
     private Button buttonOK;
     private Button buttonCanel;
+
+    List<Table> list;
 
     private View view;
 
@@ -49,14 +58,26 @@ public class TableFragment extends Fragment {
 
         recyclerViewTable = (RecyclerView) view.findViewById(R.id.crv_table);
 
-        tableAdapter = new TableAdapter(new TableAdapter.IClickItemTable(){
-            @Override
-            public void showBottomSheetView(Table table) {
-//                table.getNumberTable();
-                clickOpenBottomSheetDialog(table);
+//        listAdd = CoffeeDatabase.getInstance(TableFragment.this.getContext()).holdCoffeeDAO().getListHoldCoffeeAdd(tablehh.getNumberTable());
+//        if(listAdd != null){
 
-            }
-        });
+        tableAdapter = new TableAdapter(new TableAdapter.IClickItemTable(){
+                @Override
+                public void showBottomSheetView(Table table) {
+//                    TableSelected tb;
+//                    if (table.getNumberTable() == tb.getNumberTable())
+//                table.getNumberTable();
+//                    listAdd = CoffeeDatabase.getInstance(TableFragment.this.getContext()).holdCoffeeDAO().getListHoldCoffeeAdd(table.getNumberTable());
+//                    listAdd.get(table).
+//                    if(listAdd != null && table.getNumberTable() == table.getNumberTable()){
+                        clickOpenBottomSheetDialog(table);
+//                        tableAdapter.setBackground();
+//                        tableAdapter.setBackground();
+//                    }
+//                table.
+                }
+            });
+//        }
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
         recyclerViewTable.setLayoutManager(gridLayoutManager);
@@ -78,11 +99,19 @@ public class TableFragment extends Fragment {
     private void clickOpenBottomSheetDialog(Table table){
 
         TableAddedFood tableAddedFood = new TableAddedFood(table);
-        tableAddedFood.show(getParentFragmentManager(), tableAddedFood.getTag());
+//        if(tableAddedFood.checkTrue()){
+//        if(tableAddedFood.getList() != null)
+            tableAddedFood.show(getParentFragmentManager(), tableAddedFood.getTag());
+//        }
+
+//        if(tableAddedFood.checkTrue()){
+////            table.table
+////            table.setId(R.id.background).setBackgroundColor;
+//        }
     }
 
     private List<Table> getListTable(){
-        List<Table> list = new ArrayList<>();
+        list = new ArrayList<>();
         list.add(new Table(R.drawable.tabod, "table 1"));
         list.add(new Table(R.drawable.tabod, "table 2"));
         list.add(new Table(R.drawable.tabod, "table 3"));

@@ -54,6 +54,10 @@ public class TableAddedFood extends BottomSheetDialogFragment {
         this.table = table;
     }
 
+    public List<Coffee> getList() {
+        return list;
+    }
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -67,7 +71,17 @@ public class TableAddedFood extends BottomSheetDialogFragment {
         tvTime.setText(String.valueOf(currentTime));
 
         recyclerViewCoffeeSelected = (RecyclerView) view.findViewById(R.id.crv_order);
-        coffeeSelectedAdapter = new CoffeeSelectedAdapter(this.getContext());
+        coffeeSelectedAdapter = new CoffeeSelectedAdapter(new CoffeeSelectedAdapter.IClickItemCoffeeSelected() {
+            @Override
+            public void removeCoffeeSelected(Coffee coffeeSelected) {
+                Toast.makeText(TableAddedFood.this.getContext(), "Coffee was remove", Toast.LENGTH_SHORT);
+                list.remove(coffeeSelected);
+                coffeeSelectedAdapter.setData(list);
+                recyclerViewCoffeeSelected.setAdapter(coffeeSelectedAdapter);
+                setText();
+                coffeeSelectedAdapter.notifyDataSetChanged();
+            }
+        });
 
         LinearLayoutManager linearLinearLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
         recyclerViewCoffeeSelected.setLayoutManager(linearLinearLayoutManager);
@@ -85,20 +99,8 @@ public class TableAddedFood extends BottomSheetDialogFragment {
         coffeeSelectedAdapter.setData(list);
 
         tvPrice = view.findViewById(R.id.tv_total_price);
-        String[] x;
-        double y=0;
-        if(list != null){
-            for(int i = 0; i < list.size(); i++){
-                x = list.get(i).getPrice().split(" ");
-                y = y + Double.parseDouble(x[0]);
-                Arrays.fill(x, null);
-            }
-            tvPrice.setText(String.valueOf(y) + " VND");
-        }
-        else{
-            tvPrice.setText("0 VND");
-        }
 
+        setText();
         recyclerViewCoffeeSelected.setAdapter(coffeeSelectedAdapter);
 
         btnPayment = view.findViewById(R.id.btn_payment_ok);
@@ -118,4 +120,28 @@ public class TableAddedFood extends BottomSheetDialogFragment {
         return bottomSheetDialog;
     }
 
+    public void setText(){
+        String[] x;
+        double y=0;
+        if(list != null){
+            for(int i = 0; i < list.size(); i++){
+                x = list.get(i).getPrice().split(" ");
+                y = y + Double.parseDouble(x[0]);
+                Arrays.fill(x, null);
+            }
+            tvPrice.setText(String.valueOf(y) + " VND");
+        }
+        else{
+            tvPrice.setText("0 VND");
+        }
+    }
+
+    public boolean checkTrue(){
+        if(list != null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

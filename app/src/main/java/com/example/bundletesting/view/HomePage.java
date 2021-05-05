@@ -57,12 +57,6 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     Toolbar toolbar;
     NavigationView navigationView;
 
-    private ViewPager viewPager;
-    private CircleIndicator circleIndicator;
-    private SlideAdapter slideAdapter;
-    private List<SliderItem> listPhoto;
-    private Timer timer;
-
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);

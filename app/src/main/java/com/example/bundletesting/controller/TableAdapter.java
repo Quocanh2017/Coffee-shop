@@ -1,10 +1,12 @@
 package com.example.bundletesting.controller;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +23,9 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.tableViewHol
     private List<Table> listTable;
 
     private IClickItemTable iClickItemTable;
+
+    View view;
+
 
     public interface IClickItemTable {
         void showBottomSheetView(Table table);
@@ -46,7 +51,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.tableViewHol
     public tableViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //call to create function and return view
         //create view get ui xml of item_table to put into tableViewHolder
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_table, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_table, parent, false);
         return new tableViewHolder(view);
     }
 
@@ -65,10 +70,16 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.tableViewHol
             @Override
             public void onClick(View v) {
                 iClickItemTable.showBottomSheetView(table);
+                holder.itemView.setBackgroundColor(Color.parseColor("#FFF000"));
             }
         });
+
+//        holder.itemView.
     }
 
+//    public void setBackground(){
+//        view.setBackgroundColor(Color.parseColor("#00bfff"));
+//    }
 
     @Override
     public int getItemCount() {
@@ -83,7 +94,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.tableViewHol
 
         private ImageView imgView;
         private TextView textViewTable;
-
+//        private RelativeLayout rl;
 
         public tableViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -91,7 +102,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.tableViewHol
             //get id img and id textview
             imgView = itemView.findViewById(R.id.img_table);
             textViewTable = itemView.findViewById(R.id.textView_table);
-
+//            rl = itemView.findViewById(R.id.background);
         }
     }
 }

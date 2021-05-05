@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.bundletesting.R;
 import com.example.bundletesting.controller.CoffeeSelectedAdapter;
+import com.example.bundletesting.controller.TableAdapter;
 import com.example.bundletesting.controller.TableSelectedAdapter;
 import com.example.bundletesting.model.ChangeCoffee;
 import com.example.bundletesting.model.Coffee;
@@ -70,7 +71,10 @@ public class ListCoffeeWAdd extends AppCompatActivity {
                 Toast.makeText(ListCoffeeWAdd.this, "Coffee was remove", Toast.LENGTH_SHORT);
                 list.remove(coffeeSelected);
                 coffeeSelectedAdapter.setData(list);
+                recyclerViewCoffeeSelected.setAdapter(coffeeSelectedAdapter);
+                setText();
                 coffeeSelectedAdapter.notifyDataSetChanged();
+
             }
         });
 
@@ -94,6 +98,16 @@ public class ListCoffeeWAdd extends AppCompatActivity {
         textView_time = findViewById(R.id.tv_time_oder_od);
         Date currentTime = Calendar.getInstance().getTime();
         textView_time.setText(String.valueOf(currentTime));
+
+        setText();
+
+        Log.d("size", "onCreate: " + list.size());
+
+//        Toast.makeText(getApplicationContext(), coffee.toString(), Toast.LENGTH_SHORT);
+
+    }
+
+    public void setText(){
         String[] x;
         double y=0;
         if(list.size() > 0){
@@ -102,12 +116,11 @@ public class ListCoffeeWAdd extends AppCompatActivity {
                 y = y + Double.parseDouble(x[0]);
                 Arrays.fill(x, null);
             }
+            textView.setText(String.valueOf(y) + " VND");
         }
-        textView.setText(String.valueOf(y) + " VND");
-
-        Log.d("size", "onCreate: " + list.size());
-
-//        Toast.makeText(getApplicationContext(), coffee.toString(), Toast.LENGTH_SHORT);
+        else{
+            textView.setText("0 VND");
+        }
 
     }
 
@@ -134,6 +147,10 @@ public class ListCoffeeWAdd extends AppCompatActivity {
                     Toast.makeText(ListCoffeeWAdd.this, nameTable + " was add successfully", Toast.LENGTH_SHORT).show();
 
 //                    tableSelectedView.dismiss();
+
+//                    TableAdapter tableAdapter = new TableAdapter(ListCoffeeWAdd.this);
+
+//                    tableAdapter.getItemId();
 
                     list.clear();
                     coffeeSelectedAdapter.setData(list);
